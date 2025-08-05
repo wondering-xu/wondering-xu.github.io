@@ -8,17 +8,17 @@ form {
 }
 
 button {
-  color: #777;
+  color: #8d9ff1;
 	background: #fff;
   padding: 4px 12px 4px 12px;
-  border: solid #777 2px;
+  border: solid #ecc3c3 2px;
 	transition: all 0.3s ease-in-out;
   text-decoration: none;
 }
 
 button:hover {
-	color: #000;
-	border: solid #000 2px;
+	color: #3ec07f;
+	border: solid #bf57df 2px;
   text-decoration: none;
 }
 
@@ -56,10 +56,12 @@ input:focus, textarea:focus {
 }
 
 h1, h2, h3 {
-	font-family: 'Crimson Text', sans-serif;
+	font-family: "SimLi", "SimSun", "Microsoft YaHei", "PingFang SC", "Heiti SC", "SimHei", sans-serif;
 	letter-spacing: 1px;
-	font-weight: 300;
+	font-weight: 400;
 	margin-bottom: 20px;
+	font-size: 24px; /* 可根据需要再调大 */
+	color: #000;
 }
 
 .navbar-brand {
@@ -73,9 +75,10 @@ h1, h2, h3 {
 }
 
 .nav-item {
-	font-size: 0.8rem;
-	font-weight: 300;
-	letter-spacing: 1.5px;
+	font-size: 1rem;
+	font-weight: 400;
+	color: #000 !important;
+	font-family: "SimLi", "SimSun", "Microsoft YaHei", "PingFang SC", "Heiti SC", "SimHei", sans-serif;
 }
 
 .navbar-toggler {
