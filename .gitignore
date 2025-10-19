@@ -1,0 +1,24 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+yarn-error.log
+pnpm-debug.log*
+
+# Env
+.env
+.env.*
+
+# Editors
+.vscode/
+.idea/
+
+# Build caches and output (if any)
+dist/
+.cache/
+
+# Node modules (if used by tooling)
+node_modules/
