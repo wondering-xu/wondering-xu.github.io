@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
   <!-- Head tag -->
   <head>
   <meta charset="utf-8">
@@ -8,7 +8,7 @@
 
   <!-- Title -->
   
-  <title>废土世界</title>
+  <title>留言墙 - 废土世界</title>
 
   <!--Favicon-->
   <link rel="icon" href="favicon/favicon.ico">
@@ -53,13 +53,13 @@
   <div class="collapse navbar-collapse text-center" id="navbarCollapse">
     <ul class="navbar-nav my-auto">
       <li class="nav-item">
-        <a class="nav-link active" href="/" aria-current="page" title="随心记">随心记</a>
+        <a class="nav-link" href="/" title="随心记">随心记</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="/photos/" title="摄影集">摄影集</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/guestbook/" title="留言墙">留言墙</a>
+        <a class="nav-link active" href="/guestbook/" aria-current="page" title="留言墙">留言墙</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="/about/" title="个人介绍">个人介绍</a>
@@ -80,29 +80,25 @@
 
           <div class="row">
               
-    <div class="col-md-6 col-12 mb-4">
-  <div class="hovereffect">
-    <a href="/2025/07/23/hello-world/">
-      <img class="img-fluid portfolio-img" src="/images/unsplash.jpg" alt="Hello World">
-      <div class="overlay">
-        <span class="overlay-text">Hello World</span>
-      </div>
-    </a>
-  </div>
+<div class="col-12 pt-lg-3 mb-4 px-4 portfolio-content">
+  <h1>留言墙</h1>
+  <p>想说什么就在这里告诉我吧，一直都在。</p>
+
+  <form action="https://formsubmit.co/wonderingxu@gmail.com" method="POST">
+    <input type="hidden" name="_subject" value="来自网站留言墙的新留言" />
+    <input type="hidden" name="_captcha" value="false" />
+    <input type="hidden" name="_template" value="table" />
+    <input type="hidden" name="_honey" />
+    <input type="hidden" name="_next" value="https://wondering-xu.github.io/guestbook/?sent=1" />
+
+    <div class="form-group">
+      <label for="message">留言</label>
+      <textarea id="message" name="message" class="form-control" rows="5" required aria-label="留言内容"></textarea>
+    </div>
+    <button type="submit" class="btn-teal">发送</button>
+    <p class="small text-muted mt-2">无需留下邮箱，留言将直接发送至站长邮箱。</p>
+  </form>
 </div>
-
-
-    <div class="col-md-6 col-12 mb-4">
-  <div class="hovereffect">
-    <a href="/2025/07/23/Hello-World-0/">
-      <img class="img-fluid portfolio-img" src="/images/unsplash.jpg" alt="Hello World">
-      <div class="overlay">
-        <span class="overlay-text">Hello World</span>
-      </div>
-    </a>
-  </div>
-</div>
-
 
 
       </div>
@@ -113,6 +109,34 @@
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+<script>
+(function() {
+  var params = new URLSearchParams(window.location.search || '');
+  if (params.get('sent') === '1') {
+    var toast = document.createElement('div');
+    toast.className = 'gb-toast';
+    toast.setAttribute('role', 'status');
+    toast.setAttribute('aria-live', 'polite');
+    toast.setAttribute('aria-atomic', 'true');
+    toast.innerHTML = '<span>感恩♥记得要开心</span>' +
+      '<button type="button" class="gb-toast-close" aria-label="关闭">×</button>';
+
+    toast.querySelector('.gb-toast-close').addEventListener('click', function() {
+      toast.classList.remove('show');
+      setTimeout(function(){ if (toast && toast.parentNode) toast.parentNode.removeChild(toast); }, 200);
+    });
+
+    document.body.appendChild(toast);
+    // force reflow to enable transition
+    setTimeout(function(){ toast.classList.add('show'); }, 10);
+    // auto hide after 5s
+    setTimeout(function(){
+      toast.classList.remove('show');
+      setTimeout(function(){ if (toast && toast.parentNode) toast.parentNode.removeChild(toast); }, 200);
+    }, 5000);
+  }
+})();
+</script>
 
   </body>
 </html>
