@@ -232,3 +232,34 @@ h1, h2, h3 {
   color: #000;
   font-weight: 600;
 }
+
+/* About page typography */
+.about-content {
+    font-size: 1.05rem;
+    line-height: 1.9;
+}
+
+@media (min-width: 768px) {
+  .about-content {
+    font-size: 1.1rem;
+  }
+}
+
+.about-content p {
+    margin-bottom: 1rem;
+}
+
+.about-quote {
+    border-left: 4px solid #eaeaea;
+    margin: 1rem 0 1.25rem;
+    padding-left: 1rem;
+    color: #333;
+    font-style: italic;
+    background: #fafafa;
+}
+
+.about-content hr {
+    border: 0;
+    border-top: 1px dashed #ddd;
+    margin: 1.25rem 0;
+}
