@@ -76,55 +76,100 @@
     <hr class="hidden-md-up" />
   </div>
 </nav>
-<div class="nav-categories text-center mb-3" role="navigation" aria-label="网站栏目">
-  <ul class="nav justify-content-center">
-    <li class="nav-item"><a class="nav-link active" aria-current="page" href="/" title="随心记">随心记</a></li>
-    <li class="nav-item"><a class="nav-link" href="/photos/" title="摄影集">摄影集</a></li>
-    <li class="nav-item"><a class="nav-link" href="/wall/" title="留言墙">留言墙</a></li>
-    <li class="nav-item"><a class="nav-link" href="/about/" title="个人介绍">个人介绍</a></li>
-  </ul>
-</div>
+<!-- categories/tags section removed on SuiXinJi home as per redesign -->
 
           <div class="row">
               
-    <div class="col-md-6 col-12 mb-4">
-  <div class="hovereffect">
-    <a href="/2025/08/05/Hello-World-1/">
-      <img class="img-fluid portfolio-img" src="/images/unsplash.jpg" alt="Hello World">
-      <div class="overlay">
-        <span class="overlay-text">Hello World</span>
-      </div>
-    </a>
-  </div>
-</div>
-
-
-    <div class="col-md-6 col-12 mb-4">
-  <div class="hovereffect">
-    <a href="/2025/07/23/hello-world/">
-      <img class="img-fluid portfolio-img" src="/images/unsplash.jpg" alt="Hello World">
-      <div class="overlay">
-        <span class="overlay-text">Hello World</span>
-      </div>
-    </a>
-  </div>
-</div>
-
-
-    <div class="col-md-6 col-12 mb-4">
-  <div class="hovereffect">
-    <a href="/2025/07/23/Hello-World-0/">
-      <img class="img-fluid portfolio-img" src="/images/unsplash.jpg" alt="Hello World">
-      <div class="overlay">
-        <span class="overlay-text">Hello World</span>
-      </div>
-    </a>
-  </div>
-</div>
-
-
-
-      </div>
+            <div class="col-lg-10 col-xl-8 col-md-12 col-12 mx-auto">
+              <ul class="list-unstyled post-list">
+                <li class="post-item py-3 border-bottom">
+                  <h2 class="post-title h5 mb-1">
+                    <a class="post-link" href="/2025/08/05/Hello-World-1/">Hello World</a>
+                  </h2>
+                  <div class="post-meta small text-muted mb-2">
+                    <time class="post-date" data-href="/2025/08/05/Hello-World-1/"></time>
+                  </div>
+                  <p class="post-excerpt mb-0" data-src="/2025/08/05/Hello-World-1/">加载中…</p>
+                </li>
+                <li class="post-item py-3 border-bottom">
+                  <h2 class="post-title h5 mb-1">
+                    <a class="post-link" href="/2025/07/23/hello-world/">Hello World</a>
+                  </h2>
+                  <div class="post-meta small text-muted mb-2">
+                    <time class="post-date" data-href="/2025/07/23/hello-world/"></time>
+                  </div>
+                  <p class="post-excerpt mb-0" data-src="/2025/07/23/hello-world/">加载中…</p>
+                </li>
+                <li class="post-item py-3 border-bottom">
+                  <h2 class="post-title h5 mb-1">
+                    <a class="post-link" href="/2025/07/23/Hello-World-0/">Hello World</a>
+                  </h2>
+                  <div class="post-meta small text-muted mb-2">
+                    <time class="post-date" data-href="/2025/07/23/Hello-World-0/"></time>
+                  </div>
+                  <p class="post-excerpt mb-0" data-src="/2025/07/23/Hello-World-0/">加载中…</p>
+                </li>
+              </ul>
+            </div>
+      
+          </div>
+          <script>
+            (function() {
+              function textClamp(str, maxLen) {
+                if (!str) return '';
+                const s = str.replace(/\s+/g, ' ').trim();
+                if (s.length <= maxLen) return s;
+                return s.slice(0, maxLen).replace(/[，。！？,.!?:;\s]*$/, '') + '…';
+              }
+              function extractDateFromPath(path) {
+                try {
+                  var parts = path.split('/').filter(Boolean);
+                  if (parts.length >= 4) {
+                    var y = parts[0], m = parts[1], d = parts[2];
+                    var dateStr = y + '-' + m + '-' + d;
+                    return dateStr;
+                  }
+                } catch(e) {}
+                return '';
+              }
+              document.querySelectorAll('.post-date').forEach(function(el) {
+                var href = el.getAttribute('data-href');
+                var date = extractDateFromPath(href || '');
+                if (date) {
+                  el.setAttribute('datetime', date);
+                  el.textContent = date;
+                }
+              });
+              var parser = new DOMParser();
+              var tasks = Array.prototype.slice.call(document.querySelectorAll('.post-excerpt'));
+              tasks.forEach(function(el) {
+                var url = el.getAttribute('data-src');
+                if (!url) return;
+                fetch(url)
+                  .then(function(res){ return res.text(); })
+                  .then(function(html) {
+                    var doc = parser.parseFromString(html, 'text/html');
+                    var meta = doc.querySelector('meta[name="description"]');
+                    var desc = meta && meta.getAttribute('content') ? meta.getAttribute('content') : '';
+                    if (!desc) {
+                      var content = doc.querySelector('.portfolio-content');
+                      if (content) {
+                        var p = content.querySelector('p');
+                        if (p && p.textContent) {
+                          desc = p.textContent.trim();
+                        } else {
+                          desc = content.textContent.trim();
+                        }
+                      }
+                    }
+                    el.textContent = textClamp(desc, 110);
+                  })
+                  .catch(function() {
+                    el.textContent = '';
+                  });
+              });
+            })();
+          </script>
       
       </div>
 

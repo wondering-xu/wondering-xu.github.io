@@ -232,3 +232,40 @@ h1, h2, h3 {
   color: #000;
   font-weight: 600;
 }
+
+/* Post list (SuiXinJi home vertical list) */
+.post-list { margin: 0; }
+.post-item { padding-top: 1rem; padding-bottom: 1rem; }
+.post-title { line-height: 1.4; letter-spacing: 0.2px; }
+.post-title .post-link {
+  color: #000;
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: color .2s ease, border-color .2s ease;
+}
+.post-title .post-link:hover,
+.post-title .post-link:focus {
+  color: #000;
+  text-decoration: none;
+  border-bottom-color: rgba(0,0,0,0.5);
+}
+.post-title .post-link:focus-visible {
+  outline: 2px solid #005fcc;
+  outline-offset: 2px;
+}
+.post-excerpt {
+  color: #555;
+  line-height: 1.7;
+  letter-spacing: 0.2px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  min-height: calc(1em * 1.7 * 3); /* reserve height to avoid CLS */
+}
+.post-meta { color: #6c757d; }
+
+@media (max-width: 576px) {
+  .post-title { letter-spacing: 0.1px; }
+  .post-excerpt { -webkit-line-clamp: 3; }
+}
