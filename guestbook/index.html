@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
   <!-- Head tag -->
   <head>
   <meta charset="utf-8">
@@ -8,10 +8,10 @@
 
   <!-- Title -->
   
-  <title>废土世界</title>
+  <title>留言墙 - 废土世界</title>
 
   <!--Favicon-->
-  <link rel="icon" href="favicon/favicon.ico">
+  <link rel="icon" href="/favicon/favicon.ico">
 
   <!--Description-->
   
@@ -27,7 +27,7 @@
 
   <!-- Custom CSS -->
   
-<link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="/css/styles.css?v=20251019">
 
 
   <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -53,13 +53,13 @@
   <div class="collapse navbar-collapse text-center" id="navbarCollapse">
     <ul class="navbar-nav my-auto">
       <li class="nav-item">
-        <a class="nav-link active" href="/" aria-current="page" title="随心记">随心记</a>
+        <a class="nav-link" href="/" title="随心记">随心记</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="/photos/" title="摄影集">摄影集</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/guestbook/" title="留言墙">留言墙</a>
+        <a class="nav-link active" href="/guestbook/" aria-current="page" title="留言墙">留言墙</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="/about/" title="个人介绍">个人介绍</a>
@@ -80,29 +80,45 @@
 
           <div class="row">
               
-    <div class="col-md-6 col-12 mb-4">
-  <div class="hovereffect">
-    <a href="/2025/07/23/hello-world/">
-      <img class="img-fluid portfolio-img" src="/images/unsplash.jpg" alt="Hello World">
-      <div class="overlay">
-        <span class="overlay-text">Hello World</span>
-      </div>
-    </a>
+<div class="col-12 pt-lg-3 mb-4 px-4 portfolio-content">
+  <h1>留言墙</h1>
+  <p>欢迎留言与交流。填写下方表单提交即可，我会尽快回复你。</p>
+
+  <div id="msg-success" class="alert alert-success" role="alert" style="display:none;">
+    感恩♥记得要开心
   </div>
+
+  <form action="https://formsubmit.co/wonderingxu@gmail.com" method="POST">
+    <!-- honeypot -->
+    <input type="text" name="_honey" style="display:none">
+    <!-- disable captcha -->
+    <input type="hidden" name="_captcha" value="false">
+    <!-- redirect after submit -->
+    <input type="hidden" name="_next" value="https://wondering-xu.github.io/guestbook/?sent=1">
+    <input type="hidden" name="_subject" value="网站留言">
+
+    <div class="form-group">
+      <label for="name">称呼</label>
+      <input id="name" name="name" type="text" class="form-control" placeholder="怎么称呼你" required>
+    </div>
+
+    <div class="form-group">
+      <label for="email">邮箱</label>
+      <input id="email" name="email" type="email" class="form-control" placeholder="用于接收回复（可选）">
+    </div>
+
+    <div class="form-group">
+      <label for="message">留言</label>
+      <textarea id="message" name="message" class="form-control" rows="5" placeholder="想说的话…" required></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-light">提交</button>
+  </form>
+
+  <noscript>
+    <p class="text-muted mt-3">你的浏览器未启用 JavaScript，提交后会跳转到确认页。</p>
+  </noscript>
 </div>
-
-
-    <div class="col-md-6 col-12 mb-4">
-  <div class="hovereffect">
-    <a href="/2025/07/23/Hello-World-0/">
-      <img class="img-fluid portfolio-img" src="/images/unsplash.jpg" alt="Hello World">
-      <div class="overlay">
-        <span class="overlay-text">Hello World</span>
-      </div>
-    </a>
-  </div>
-</div>
-
 
 
       </div>
@@ -114,5 +130,16 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 
+<script>
+  (function(){
+    try {
+      var params = new URLSearchParams(window.location.search);
+      if (params.get('sent') === '1') {
+        var el = document.getElementById('msg-success');
+        if (el) { el.style.display = 'block'; }
+      }
+    } catch(e) {}
+  })();
+</script>
   </body>
 </html>
