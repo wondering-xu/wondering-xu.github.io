@@ -269,3 +269,53 @@ h1, h2, h3 {
   .post-title { letter-spacing: 0.1px; }
   .post-excerpt { -webkit-line-clamp: 3; }
 }
+
+/* Global background: aerial blue ocean + 70% mask (light/dark) */
+html {
+  background-color: #f7f9fc; /* fallback for very old browsers */
+}
+
+body {
+  position: relative; /* create stacking context for ::before */
+  background-color: #ffffff; /* keep site white base under content */
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  /* 70% white mask over the ocean image in light mode */
+  /* Fallback basic image for older browsers */
+  background: url('/assets/img/bg-ocean.webp') center/cover no-repeat;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.7), rgba(255,255,255,0.7)),
+    image-set(
+      url('/assets/img/bg-ocean.webp') type('image/webp'),
+      url('/images/unsplash.jpg') type('image/jpeg')
+    );
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  pointer-events: none; /* do not block interactions */
+  z-index: 0; /* below content (which we raise to 1) */
+  will-change: transform; /* hint for smoothness, no layout impact */
+}
+
+/* Ensure page content paints above the fixed background without CLS */
+body > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Dark mode: switch to 70% black mask for contrast, keep layout intact */
+@media (prefers-color-scheme: dark) {
+  html { background-color: #0b0b0b; }
+  body::before {
+    background-image:
+      linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
+      image-set(
+        url('/assets/img/bg-ocean.webp') type('image/webp'),
+        url('/images/unsplash.jpg') type('image/jpeg')
+      );
+  }
+}
