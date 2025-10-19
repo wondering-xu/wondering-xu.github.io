@@ -1,0 +1,15 @@
+# OS / editor files
+.DS_Store
+Thumbs.db
+*.log
+
+# Node / build (if used outside of this static export)
+node_modules/
+dist/
+build/
+.tmp/
+.cache/
+
+# Misc
+*.swp
+*.swo

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
   <!-- Head tag -->
   <head>
   <meta charset="utf-8">
@@ -8,7 +8,7 @@
 
   <!-- Title -->
   
-  <title>about 废废 - 废土世界</title>
+  <title>搜索 - 废土世界</title>
 
   <!--Favicon-->
   <link rel="icon" href="favicon/favicon.ico">
@@ -28,7 +28,17 @@
   <!-- Custom CSS -->
   
 <link rel="stylesheet" href="/css/styles.css">
-
+<style>
+  /* Search page specific styles */
+  #search-input { font-size: 1rem; }
+  #search-results li { padding: 10px 8px; border-bottom: 1px solid #eee; }
+  #search-results li:last-child { border-bottom: 0; }
+  #search-results li.active { background: #f7f7f7; border-radius: 4px; }
+  #search-results a { color: #333; text-decoration: none; }
+  #search-results a:hover { text-decoration: none; }
+  #search-results small { color: #888; }
+  mark { background: #ffe58f; padding: 0 2px; }
+</style>
 
   <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
@@ -43,7 +53,7 @@
 
 
   <body>
-      <div class="container-fluid navbar-container m-sm-5">
+  	<div class="container-fluid navbar-container m-sm-5">
       <!-- Header -->
       <nav class="navbar navbar-toggleable-sm navbar-light px-1 py-3 my-3 mb-sm-5">
   <a class="navbar-brand ml-2" href="/">废土世界</a>
@@ -64,21 +74,24 @@
 </nav>
 
 
-          <div class="row">
-              
-<div class="col-12 pt-lg-3 mb-4 px-4 portfolio-content">
-  
-</div>
-
+    		<div class="row">
+    			<div class="col-lg-8 offset-lg-2 col-12 pt-3 px-4">
+          <h1>搜索</h1>
+          <input id="search-input" type="search" class="form-control" placeholder="输入关键词，实时搜索..." autocomplete="off" autocapitalize="none" spellcheck="false" aria-label="搜索" autofocus>
+          <div id="search-stats" class="text-muted small mt-2"></div>
+          <ul id="search-results" class="list-unstyled mt-3" role="listbox" aria-label="搜索结果"></ul>
+          <div id="search-empty" class="text-muted mt-3" style="display:none;">未找到结果</div>
+        </div>
 
       </div>
       
-      </div>
+  	</div>
 
     <!-- After footer scripts -->
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 
+    <script src="/js/search.js" defer></script>
   </body>
 </html>
