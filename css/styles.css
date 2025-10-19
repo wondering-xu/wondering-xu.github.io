@@ -232,3 +232,65 @@ h1, h2, h3 {
   color: #000;
   font-weight: 600;
 }
+
+/* Brand teal button */
+.btn-teal {
+  color: #fff;
+  background-color: #20c997;
+  border: 2px solid #20c997;
+  padding: .5rem 1rem;
+  border-radius: .25rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color .2s ease, border-color .2s ease, color .2s ease;
+}
+.btn-teal:hover,
+.btn-teal:focus {
+  background-color: #17a589;
+  border-color: #17a589;
+  color: #fff;
+  text-decoration: none;
+}
+.btn-teal:focus-visible {
+  outline: 2px solid #005fcc;
+  outline-offset: 2px;
+}
+
+/* Guestbook success toast */
+.gb-toast {
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%) translateY(6px);
+  bottom: 1rem;
+  background: #20c997;
+  color: #fff;
+  padding: .75rem 1.25rem;
+  border-radius: .5rem;
+  box-shadow: 0 6px 18px rgba(0,0,0,.15);
+  z-index: 1050;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .2s ease, transform .2s ease;
+}
+.gb-toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+  pointer-events: auto;
+}
+.gb-toast .gb-toast-close {
+  border: 0;
+  background: transparent;
+  color: #fff;
+  margin-left: .75rem;
+  font-size: 1.25rem;
+  line-height: 1;
+  cursor: pointer;
+}
+@media (prefers-reduced-motion: reduce) {
+  .gb-toast {
+    transition: none;
+  }
+  .btn-teal {
+    transition: none;
+  }
+}
