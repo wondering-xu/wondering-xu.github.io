@@ -269,3 +269,57 @@ h1, h2, h3 {
   .post-title { letter-spacing: 0.1px; }
   .post-excerpt { -webkit-line-clamp: 3; }
 }
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  body { background: #0f1116; color: #e5e5e5; }
+  .portfolio-content { color: #d9d9d9; }
+  h1, h2, h3 { color: #ffffff; }
+  a { color: #c9d1d9; }
+  .portfolio-content a {
+    color: #c9d1d9;
+    border-bottom-color: rgba(201,209,217,0.4);
+  }
+  .portfolio-content a:hover {
+    color: #ffffff;
+    border-bottom-color: rgba(255,255,255,0.7);
+  }
+  .navbar-nav .nav-link,
+  .nav-categories .nav-link,
+  .post-title .post-link {
+    color: #e5e5e5;
+  }
+  .navbar-nav .nav-link:hover,
+  .navbar-nav .nav-link:focus,
+  .nav-categories .nav-link:hover,
+  .nav-categories .nav-link:focus {
+    border-bottom-color: rgba(255,255,255,0.5);
+  }
+  .navbar-nav .nav-link.active,
+  .navbar-nav .nav-link[aria-current="page"],
+  .nav-categories .nav-link.active,
+  .nav-categories .nav-link[aria-current="page"] {
+    border-bottom-color: #e5e5e5;
+    color: #ffffff;
+  }
+  .post-excerpt { color: #b9c0c8; }
+  .post-meta { color: #9aa4af; }
+  .hovereffect .overlay-text { color: #f2f5f8; }
+  button {
+    color: #aab8ff;
+    background: #1b1f2a;
+    border-color: #8a6bc2;
+  }
+  button:hover {
+    color: #7be0a2;
+    border-color: #aa7be2;
+  }
+  input, textarea {
+    background: #1a1f2b;
+    color: #e5e5e5;
+    border-color: #333b47;
+  }
+  input:focus, textarea:focus {
+    border-color: #5b6c87;
+  }
+}
