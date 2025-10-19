@@ -1,0 +1,47 @@
+{
+  "version": 1,
+  "items": [
+    {
+      "title": "Hello World",
+      "url": "/2025/07/23/hello-world/",
+      "excerpt": "Welcome to废土世界! This is my very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or ask on GitHub.",
+      "tags": ["Hexo", "入门"]
+    },
+    {
+      "title": "Hello World",
+      "url": "/2025/07/23/Hello-World-0/",
+      "excerpt": "",
+      "tags": []
+    },
+    {
+      "title": "Hello World",
+      "url": "/2025/08/05/Hello-World-1/",
+      "excerpt": "",
+      "tags": []
+    },
+    {
+      "title": "about 废废",
+      "url": "/about/",
+      "excerpt": "关于我",
+      "tags": ["关于"]
+    },
+    {
+      "title": "眼中的世界",
+      "url": "/photos/",
+      "excerpt": "照片集",
+      "tags": ["照片"]
+    },
+    {
+      "title": "归档",
+      "url": "/archives/",
+      "excerpt": "所有文章归档",
+      "tags": ["归档"]
+    },
+    {
+      "title": "首页",
+      "url": "/",
+      "excerpt": "废土世界 主页",
+      "tags": []
+    }
+  ]
+}
