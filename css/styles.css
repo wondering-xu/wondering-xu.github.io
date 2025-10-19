@@ -269,3 +269,52 @@ h1, h2, h3 {
   .post-title { letter-spacing: 0.1px; }
   .post-excerpt { -webkit-line-clamp: 3; }
 }
+
+/* Site-wide ocean background with 70% dim overlay */
+html, body { height: 100%; }
+body { position: relative; background-color: transparent; }
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image:
+    linear-gradient(0deg, rgba(255,255,255,0.7), rgba(255,255,255,0.7)),
+    url('/assets/img/bg-ocean.webp'),
+    linear-gradient(180deg, #bfe9ff 0%, #66a6ff 100%);
+  background-position: center center, center center, center center;
+  background-repeat: no-repeat, no-repeat, no-repeat;
+  background-size: cover, cover, cover;
+  transform: translateZ(0);
+}
+
+@media (prefers-color-scheme: dark) {
+  body::before {
+    background-image:
+      linear-gradient(0deg, rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
+      url('/assets/img/bg-ocean.webp'),
+      linear-gradient(180deg, #0c2a52 0%, #001833 100%);
+  }
+  body { color: #e8e8e8; }
+  h1, h2, h3 { color: #fff; }
+  .nav-item { color: #fff !important; }
+  .navbar-nav .nav-link { color: #fff; }
+  .navbar-nav .nav-link:hover,
+  .navbar-nav .nav-link:focus { border-bottom-color: rgba(255,255,255,0.6); }
+  .navbar-nav .nav-link.active,
+  .navbar-nav .nav-link[aria-current="page"] { border-bottom-color: #fff; color: #fff; }
+  .nav-categories .nav-link { color: #fff; }
+  .nav-categories .nav-link:hover,
+  .nav-categories .nav-link:focus { border-bottom-color: rgba(255,255,255,0.6); }
+  .nav-categories .nav-link.active,
+  .nav-categories .nav-link[aria-current="page"] { border-bottom-color: #fff; color: #fff; }
+  .post-title .post-link { color: #fff; }
+  .post-title .post-link:hover,
+  .post-title .post-link:focus { border-bottom-color: rgba(255,255,255,0.5); }
+  .post-meta { color: #bbb; }
+  .post-excerpt { color: #ddd; }
+  .portfolio-content { color: #ddd; }
+  .portfolio-content a { color: #fff; border-bottom-color: rgba(255,255,255,0.6); }
+  .portfolio-content a:hover { color: #fff; border-bottom-color: #fff; }
+}
