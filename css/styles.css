@@ -324,49 +324,15 @@ h1, h2, h3 {
   }
 }
 
-/* Page background images (WebP) */
-body.page-home,
-body.page-about,
-body.page-guestbook,
-body.page-photos,
-body.page-archives,
-body.page-search,
-body.page-post {
-  background-attachment: fixed;
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
-
-/* Light mode overlay to maintain readability */
-body.page-home { background-image: linear-gradient(rgba(255,255,255,0.86), rgba(255,255,255,0.86)), url('/assets/img/bg-home.webp'); }
-body.page-about { background-image: linear-gradient(rgba(255,255,255,0.86), rgba(255,255,255,0.86)), url('/assets/img/bg-about.webp'); }
-body.page-guestbook { background-image: linear-gradient(rgba(255,255,255,0.86), rgba(255,255,255,0.86)), url('/assets/img/bg-guestbook.webp'); }
-body.page-photos { background-image: linear-gradient(rgba(255,255,255,0.86), rgba(255,255,255,0.86)), url('/assets/img/bg-photos.webp'); }
-body.page-archives { background-image: linear-gradient(rgba(255,255,255,0.86), rgba(255,255,255,0.86)), url('/assets/img/bg-archives.webp'); }
-body.page-search { background-image: linear-gradient(rgba(255,255,255,0.86), rgba(255,255,255,0.86)), url('/assets/img/bg-search.webp'); }
-body.page-post { background-image: linear-gradient(rgba(255,255,255,0.86), rgba(255,255,255,0.86)), url('/assets/img/bg-post.webp'); }
-
-/* Dark mode overlay for backgrounds */
-@media (prefers-color-scheme: dark) {
-  body.page-home { background-image: linear-gradient(rgba(15,17,22,0.84), rgba(15,17,22,0.84)), url('/assets/img/bg-home.webp'); }
-  body.page-about { background-image: linear-gradient(rgba(15,17,22,0.84), rgba(15,17,22,0.84)), url('/assets/img/bg-about.webp'); }
-  body.page-guestbook { background-image: linear-gradient(rgba(15,17,22,0.84), rgba(15,17,22,0.84)), url('/assets/img/bg-guestbook.webp'); }
-  body.page-photos { background-image: linear-gradient(rgba(15,17,22,0.84), rgba(15,17,22,0.84)), url('/assets/img/bg-photos.webp'); }
-  body.page-archives { background-image: linear-gradient(rgba(15,17,22,0.84), rgba(15,17,22,0.84)), url('/assets/img/bg-archives.webp'); }
-  body.page-search { background-image: linear-gradient(rgba(15,17,22,0.84), rgba(15,17,22,0.84)), url('/assets/img/bg-search.webp'); }
-  body.page-post { background-image: linear-gradient(rgba(15,17,22,0.84), rgba(15,17,22,0.84)), url('/assets/img/bg-post.webp'); }
-}
-:root{--page-bg:url('/assets/img/bg-default.webp');--page-bg-repeat:repeat;--page-bg-size:auto}
+/* Page-specific background rules removed; using body CSS variables for per-page backgrounds */
+:root{--page-bg:url('/assets/img/bg-home.webp');--page-bg-repeat:repeat;--page-bg-size:auto}
 html,body{min-height:100%}
-body::before{
-content:"";position:fixed;inset:0;z-index:-1;
-background:linear-gradient(rgba(255,255,255,0.2),rgba(255,255,255,0.2)),var(--page-bg) left top;
-background-repeat:var(--page-bg-repeat);background-size:var(--page-bg-size)
+body{
+  background-image:linear-gradient(rgba(255,255,255,0.2),rgba(255,255,255,0.2)),var(--page-bg);
+  background-repeat:no-repeat,var(--page-bg-repeat);
+  background-size:auto,var(--page-bg-size);
+  background-position:0 0,0 0;
 }
 @media (prefers-color-scheme: dark){
-body::before{
-background:linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.2)),var(--page-bg) left top;
-background-repeat:var(--page-bg-repeat);background-size:var(--page-bg-size)
-}
+  body{background-image:linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.2)),var(--page-bg)}
 }
