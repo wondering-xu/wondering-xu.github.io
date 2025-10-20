@@ -323,3 +323,37 @@ h1, h2, h3 {
     border-color: #5b6c87;
   }
 }
+
+/* Page background images (WebP) */
+body.page-home,
+body.page-about,
+body.page-guestbook,
+body.page-photos,
+body.page-archives,
+body.page-search,
+body.page-post {
+  background-attachment: fixed;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* Light mode overlay to maintain readability */
+body.page-home { background-image: linear-gradient(rgba(255,255,255,0.86), rgba(255,255,255,0.86)), url('/assets/img/bg-home.webp'); }
+body.page-about { background-image: linear-gradient(rgba(255,255,255,0.86), rgba(255,255,255,0.86)), url('/assets/img/bg-about.webp'); }
+body.page-guestbook { background-image: linear-gradient(rgba(255,255,255,0.86), rgba(255,255,255,0.86)), url('/assets/img/bg-guestbook.webp'); }
+body.page-photos { background-image: linear-gradient(rgba(255,255,255,0.86), rgba(255,255,255,0.86)), url('/assets/img/bg-photos.webp'); }
+body.page-archives { background-image: linear-gradient(rgba(255,255,255,0.86), rgba(255,255,255,0.86)), url('/assets/img/bg-archives.webp'); }
+body.page-search { background-image: linear-gradient(rgba(255,255,255,0.86), rgba(255,255,255,0.86)), url('/assets/img/bg-search.webp'); }
+body.page-post { background-image: linear-gradient(rgba(255,255,255,0.86), rgba(255,255,255,0.86)), url('/assets/img/bg-post.webp'); }
+
+/* Dark mode overlay for backgrounds */
+@media (prefers-color-scheme: dark) {
+  body.page-home { background-image: linear-gradient(rgba(15,17,22,0.84), rgba(15,17,22,0.84)), url('/assets/img/bg-home.webp'); }
+  body.page-about { background-image: linear-gradient(rgba(15,17,22,0.84), rgba(15,17,22,0.84)), url('/assets/img/bg-about.webp'); }
+  body.page-guestbook { background-image: linear-gradient(rgba(15,17,22,0.84), rgba(15,17,22,0.84)), url('/assets/img/bg-guestbook.webp'); }
+  body.page-photos { background-image: linear-gradient(rgba(15,17,22,0.84), rgba(15,17,22,0.84)), url('/assets/img/bg-photos.webp'); }
+  body.page-archives { background-image: linear-gradient(rgba(15,17,22,0.84), rgba(15,17,22,0.84)), url('/assets/img/bg-archives.webp'); }
+  body.page-search { background-image: linear-gradient(rgba(15,17,22,0.84), rgba(15,17,22,0.84)), url('/assets/img/bg-search.webp'); }
+  body.page-post { background-image: linear-gradient(rgba(15,17,22,0.84), rgba(15,17,22,0.84)), url('/assets/img/bg-post.webp'); }
+}
