@@ -357,3 +357,21 @@ body.page-post { background-image: linear-gradient(rgba(255,255,255,0.86), rgba(
   body.page-search { background-image: linear-gradient(rgba(15,17,22,0.84), rgba(15,17,22,0.84)), url('/assets/img/bg-search.webp'); }
   body.page-post { background-image: linear-gradient(rgba(15,17,22,0.84), rgba(15,17,22,0.84)), url('/assets/img/bg-post.webp'); }
 }
+:root { --page-bg: url('/assets/img/bg-default.webp'); --page-bg-repeat: repeat; --page-bg-size: auto; }
+html, body { min-height: 100%; }
+body::before {
+content: "";
+position: fixed; inset: 0; z-index: -1;
+/* 淡化20%：亮色用白色20%遮罩（图片可见度80%） /
+background: linear-gradient(rgba(255,255,255,0.2), rgba(255,255,255,0.2)), var(--page-bg) left top;
+background-repeat: var(--page-bg-repeat);
+background-size: var(--page-bg-size);
+}
+@media (prefers-color-scheme: dark){
+/ 暗色用黑色20%遮罩 */
+body::before {
+background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), var(--page-bg) left top;
+background-repeat: var(--page-bg-repeat);
+background-size: var(--page-bg-size);
+}
+}
