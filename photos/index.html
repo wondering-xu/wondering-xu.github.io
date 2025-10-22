@@ -29,7 +29,7 @@
 
   <!-- Custom CSS -->
   
-<link rel="stylesheet" href="/css/styles.css?v=per-page-bg-20251021">
+<link rel="stylesheet" href="/css/styles.css?v=content-refresh-20250215">
 
 
   <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -88,18 +88,13 @@
   <header class="photo-hub-header mb-4 text-center text-sm-left">
     <h1 class="mb-3">摄影集</h1>
     <p class="mb-2">四大主题记录生活里的光影瞬间。先从分类入口挑选主题，再进入相册页批量添加或浏览照片。</p>
-    <p class="mb-0">建议使用 WebP / JPG，并在上传前将长边导出为 2560 / 1920 / 1600 像素，以兼顾画质与加载速度。</p>
   </header>
 
-  <section class="photo-upload-callout mb-5" aria-label="上传与存放指引">
-    <h2 class="h5 mb-3">上传与存放指引</h2>
-    <ul class="mb-3">
-      <li>将照片放在 <code>/assets/photos/&lt;分类&gt;/</code> 或 <code>/assets/photos/travel/&lt;地区&gt;/</code> 目录。例如：<code>/assets/photos/life/</code>、<code>/assets/photos/travel/europe/</code>、<code>/assets/photos/portraits/</code>。</li>
-      <li>文件名建议包含拍摄地点或时间，便于后续管理；上传大图前先压缩体积。</li>
-      <li>在对应相册页的 <code>&lt;figure&gt;</code> 列表中追加图片条目，可直接复制示例结构。</li>
-    </ul>
-    <p class="mb-0"><strong>提示：</strong>所有图片都启用了懒加载与统一裁切比例，保持封面整洁并避免页面抖动。</p>
-  </section>
+  <!-- 管理提示：
+  1）将照片存放在 /assets/photos/<分类>/ 或 /assets/photos/travel/<地区>/ 目录。
+  2）上传前将长边导出为 2560 / 1920 / 1600 像素，以兼顾画质与加载速度。
+  3）在对应相册页维护 <figure> 列表以添加图片。
+  -->
 
   <section class="photo-category-grid" aria-label="摄影分类导航">
     <article class="photo-category-card photo-category-life">
@@ -149,7 +144,7 @@
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
-<script src="/photos/photos.js"></script>
+<script src="/photos/photos.js?v=content-refresh-20250215"></script>
 <div class="photo-lightbox" aria-hidden="true" role="dialog" aria-modal="true">
   <button type="button" class="lightbox-close" data-lightbox-close aria-label="关闭查看">×</button>
   <div class="lightbox-body">
