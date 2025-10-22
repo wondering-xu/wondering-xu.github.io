@@ -8,14 +8,14 @@
 
   <!-- Title -->
   
-  <title>摄影集 - 废土世界</title>
+  <title>欧洲旅行摄影集 - 废土世界</title>
 
   <!--Favicon-->
   <link rel="icon" href="/favicon/favicon.ico">
 
   <!--Description-->
   
-      <meta name="description" content="生活、旅行、随手拍与人像摄影集锦，快速进入各个相册分类。">
+      <meta name="description" content="欧洲旅行摄影精选，记录不同城市与街头的光影故事。">
   
 
   <!--Author-->
@@ -85,58 +85,31 @@
           <div class="row">
               
 <div class="col-12 pt-lg-3 mb-4 px-4 portfolio-content">
-  <header class="photo-hub-header mb-4 text-center text-sm-left">
-    <h1 class="mb-3">摄影集</h1>
-    <p class="mb-2">四大主题记录生活里的光影瞬间。先从分类入口挑选主题，再进入相册页批量添加或浏览照片。</p>
-    <p class="mb-0">建议使用 WebP / JPG，并在上传前将长边导出为 2560 / 1920 / 1600 像素，以兼顾画质与加载速度。</p>
+  <a class="d-inline-flex align-items-center mb-3" href="/photos/travel/" title="返回旅行相册">← 返回旅行 Travel</a>
+  <header class="mb-4">
+    <h1 class="mb-3">欧洲 Europe</h1>
+    <p class="mb-0">漫步在古老城市的石板路上，记录阳光、建筑与街头故事。</p>
   </header>
 
-  <section class="photo-upload-callout mb-5" aria-label="上传与存放指引">
-    <h2 class="h5 mb-3">上传与存放指引</h2>
-    <ul class="mb-3">
-      <li>将照片放在 <code>/assets/photos/&lt;分类&gt;/</code> 或 <code>/assets/photos/travel/&lt;地区&gt;/</code> 目录。例如：<code>/assets/photos/life/</code>、<code>/assets/photos/travel/europe/</code>、<code>/assets/photos/portraits/</code>。</li>
-      <li>文件名建议包含拍摄地点或时间，便于后续管理；上传大图前先压缩体积。</li>
-      <li>在对应相册页的 <code>&lt;figure&gt;</code> 列表中追加图片条目，可直接复制示例结构。</li>
+  <section class="photo-upload-callout mb-4" aria-label="欧洲相册上传说明">
+    <h2 class="h5 mb-3">如何维护本相册</h2>
+    <ul class="mb-0">
+      <li>照片文件请放入 <code>/assets/photos/travel/europe/</code> 目录。</li>
+      <li>可按国家或城市分批上传，并在标题中标注地点，例如 “巴黎黄昏”。</li>
+      <li>复制下方 <code>&lt;figure&gt;</code> 模板，更新图片路径、标题与补充说明。</li>
     </ul>
-    <p class="mb-0"><strong>提示：</strong>所有图片都启用了懒加载与统一裁切比例，保持封面整洁并避免页面抖动。</p>
   </section>
 
-  <section class="photo-category-grid" aria-label="摄影分类导航">
-    <article class="photo-category-card photo-category-life">
-      <a class="photo-category-link" href="/photos/life/" title="生活 Life">
-        <h3 class="category-title">生活 Life</h3>
-        <p class="category-desc">家居、朋友聚会、日常片段，让回忆有迹可循。</p>
-        <span class="category-cta">进入相册</span>
-      </a>
-    </article>
-    <article class="photo-category-card photo-category-travel">
-      <a class="photo-category-link" href="/photos/travel/" title="旅游 Travel">
-        <h3 class="category-title">旅游 Travel</h3>
-        <p class="category-desc">足迹覆盖世界各地，按地区进一步浏览子分类。</p>
-        <span class="category-cta">进入相册</span>
-      </a>
-      <ul class="subcategory-list" aria-label="旅游子分类">
-        <li><a href="/photos/travel/europe/">欧洲 Europe</a></li>
-        <li><a href="/photos/travel/japan/">日本 Japan</a></li>
-        <li><a href="/photos/travel/new-zealand/">新西兰 New&nbsp;Zealand</a></li>
-        <li><a href="/photos/travel/se-asia/">东南亚 South-East&nbsp;Asia</a></li>
-        <li><a href="/photos/travel/china/">国内 China</a></li>
-      </ul>
-    </article>
-    <article class="photo-category-card photo-category-snaps">
-      <a class="photo-category-link" href="/photos/snaps/" title="随手拍 Snaps">
-        <h3 class="category-title">随手拍 Snaps</h3>
-        <p class="category-desc">灵感闪现的一刻，手机与相机都能记录的小确幸。</p>
-        <span class="category-cta">进入相册</span>
-      </a>
-    </article>
-    <article class="photo-category-card photo-category-portraits">
-      <a class="photo-category-link" href="/photos/portraits/" title="人像 Portraits">
-        <h3 class="category-title">人像 Portraits</h3>
-        <p class="category-desc">保留情绪与光线的故事，呈现人物最鲜活的样子。</p>
-        <span class="category-cta">进入相册</span>
-      </a>
-    </article>
+  <section class="photo-grid" aria-label="欧洲旅行相册">
+    <!-- 在此追加图片：将照片放入 /assets/photos/travel/europe/ 目录，并复制下面的 <figure> 结构按行程排序 -->
+    <figure class="photo-card">
+      <div class="photo-thumb-wrapper">
+        <a class="photo-thumb-link" href="/assets/photos/placeholder.svg" data-lightbox-trigger>
+          <img class="photo-thumb" src="/assets/photos/placeholder.svg" alt="欧洲旅行相册示例照片" loading="lazy" decoding="async" width="1600" height="1067">
+        </a>
+      </div>
+      <figcaption>示例照片 —— 替换为实际旅途影像。<small>上传至 /assets/photos/travel/europe/ 后更新此处路径。</small></figcaption>
+    </figure>
   </section>
 </div>
 
