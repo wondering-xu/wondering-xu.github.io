@@ -29,7 +29,7 @@
 
   <!-- Custom CSS -->
   
-<link rel="stylesheet" href="/css/styles.css?v=per-page-bg-20251021">
+<link rel="stylesheet" href="/css/styles.css?v=content-refresh-20250215">
 
 
   <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -91,25 +91,15 @@
     <p class="mb-0">即兴的构图、街头的偶遇、旅行途中的小惊喜，都可以快速归类在这里。</p>
   </header>
 
-  <section class="photo-upload-callout mb-4" aria-label="随手拍相册上传说明">
-    <h2 class="h5 mb-3">如何维护本相册</h2>
-    <ul class="mb-0">
-      <li>照片文件请放入 <code>/assets/photos/snaps/</code> 目录。</li>
-      <li>照片通常来自手机，可直接导出为 1920 或 1600 像素宽度，减少文件体积。</li>
-      <li>复制下方 <code>&lt;figure&gt;</code> 模板，更新图片路径、标题与补充说明。</li>
-    </ul>
-  </section>
+  <!-- 管理提示：
+  1）照片文件存放路径：/assets/photos/snaps/
+  2）上传前可将宽度导出为 1920 或 1600 像素，控制体积。
+  3）复制 <figure> 结构更新图片路径、标题与说明。
+  -->
 
   <section class="photo-grid" aria-label="随手拍相册">
-    <!-- 在此追加图片：将照片放入 /assets/photos/snaps/ 目录，并复制下面的 <figure> 结构按时间排序 -->
-    <figure class="photo-card">
-      <div class="photo-thumb-wrapper">
-        <a class="photo-thumb-link" href="/assets/photos/placeholder.svg" data-lightbox-trigger>
-          <img class="photo-thumb" src="/assets/photos/placeholder.svg" alt="随手拍相册示例照片" loading="lazy" decoding="async" width="1600" height="1067">
-        </a>
-      </div>
-      <figcaption>示例照片 —— 替换为真实的随手拍作品。<small>上传至 /assets/photos/snaps/ 后更新此处路径。</small></figcaption>
-    </figure>
+    <!-- 管理提示：按时间维护 <figure> 列表，保持懒加载与尺寸属性一致。 -->
+    <p class="text-muted mb-0">作品整理中，敬请期待。</p>
   </section>
 </div>
 
@@ -122,7 +112,7 @@
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
-<script src="/photos/photos.js"></script>
+<script src="/photos/photos.js?v=content-refresh-20250215"></script>
 <div class="photo-lightbox" aria-hidden="true" role="dialog" aria-modal="true">
   <button type="button" class="lightbox-close" data-lightbox-close aria-label="关闭查看">×</button>
   <div class="lightbox-body">
