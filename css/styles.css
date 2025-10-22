@@ -233,41 +233,115 @@ h1, h2, h3 {
   font-weight: 600;
 }
 
-/* Post list (SuiXinJi home vertical list) */
-.post-list { margin: 0; }
-.post-item { padding-top: 1rem; padding-bottom: 1rem; }
-.post-title { line-height: 1.4; letter-spacing: 0.2px; }
-.post-title .post-link {
-  color: #000;
-  text-decoration: none;
-  border-bottom: 1px solid transparent;
-  transition: color .2s ease, border-color .2s ease;
+/* Post card grid (homepage & SuiXinJi list) */
+.post-grid {
+  display: grid;
+  gap: 1.75rem;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
-.post-title .post-link:hover,
-.post-title .post-link:focus {
-  color: #000;
-  text-decoration: none;
-  border-bottom-color: rgba(0,0,0,0.5);
+
+@media (min-width: 768px) {
+  .post-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
-.post-title .post-link:focus-visible {
-  outline: 2px solid #005fcc;
-  outline-offset: 2px;
+
+@media (min-width: 992px) {
+  .post-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
 }
-.post-excerpt {
-  color: #555;
-  line-height: 1.7;
-  letter-spacing: 0.2px;
+
+.post-card {
+  position: relative;
+  display: block;
+  border-radius: 1.25rem;
   overflow: hidden;
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;
-  min-height: calc(1em * 1.7 * 3); /* reserve height to avoid CLS */
+  text-decoration: none;
+  color: #ffffff;
+  background: #0f172a;
+  min-height: 0;
+  box-shadow: 0 20px 40px rgba(15, 23, 42, 0.22);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
-.post-meta { color: #6c757d; }
+
+.post-card:hover,
+.post-card:focus-visible {
+  transform: translateY(-6px);
+  box-shadow: 0 26px 60px rgba(15, 23, 42, 0.32);
+}
+
+.post-card:focus {
+  outline: none;
+}
+
+.post-card:focus-visible {
+  outline: 3px solid rgba(96, 165, 250, 0.75);
+  outline-offset: 4px;
+}
+
+.post-cover {
+  --post-cover-image: url('/assets/img/bg-post.webp');
+  background-image: linear-gradient(180deg, rgba(15, 23, 42, 0.65), rgba(15, 23, 42, 0.35)), var(--post-cover-image);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: inherit;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  padding: 1.75rem;
+  min-height: 240px;
+  transition: transform 0.35s ease, filter 0.35s ease;
+}
+
+.post-card:hover .post-cover,
+.post-card:focus-visible .post-cover {
+  filter: brightness(1.05);
+}
+
+.post-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  color: #ffffff;
+  text-shadow: 0 12px 30px rgba(15, 23, 42, 0.6);
+}
+
+.post-meta h3 {
+  margin: 0;
+  font-size: 1.45rem;
+  line-height: 1.3;
+  letter-spacing: 0.4px;
+  font-weight: 600;
+}
+
+.post-meta time {
+  font-size: 0.95rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.82);
+}
 
 @media (max-width: 576px) {
-  .post-title { letter-spacing: 0.1px; }
-  .post-excerpt { -webkit-line-clamp: 3; }
+  .post-cover {
+    padding: 1.5rem;
+    min-height: 220px;
+  }
+
+  .post-meta h3 {
+    font-size: 1.3rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .post-card,
+  .post-cover {
+    transition: none;
+  }
 }
 
 /* Photos hub and gallery */

@@ -27,7 +27,7 @@
 
   <!-- Custom CSS -->
   
-<link rel="stylesheet" href="/css/styles.css?v=per-page-bg-20251021">
+<link rel="stylesheet" href="/css/styles.css?v=post-card-overlay-20251022">
 
 
   <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -80,46 +80,40 @@
 </nav>
 
 
-          <div class="row">
-              
-    <div class="col-md-6 col-12 mb-4">
-  <div class="hovereffect">
-    <a href="/2025/08/05/Hello-World-1/">
-      <img class="img-fluid portfolio-img" src="/images/unsplash.jpg" alt="Hello World">
-      <div class="overlay">
-        <span class="overlay-text">Hello World</span>
-      </div>
-    </a>
-  </div>
-</div>
+          <div class="post-grid">
+            <!--
+              🖼️ 封面图自定义说明：
+              - 将封面图放在 /assets/img/covers/ 下（推荐 WebP，宽度 ≥ 1200px）
+              - 在每篇文章的 data-cover="/assets/img/covers/你的图片.webp" 属性中替换为对应文件名，实现独立封面
+              - 如果省略 data-cover，将自动回退到默认封面 /assets/img/bg-post.webp
+            -->
+            <a class="post-card" href="/2025/08/05/Hello-World-1/" data-cover="/assets/img/covers/hello-world-1.webp">
+              <div class="post-cover">
+                <div class="post-meta">
+                  <h3>Hello World</h3>
+                  <time datetime="2025-08-05">2025-08-05</time>
+                </div>
+              </div>
+            </a>
 
+            <a class="post-card" href="/2025/07/23/hello-world/" data-cover="/assets/img/covers/hello-world.webp">
+              <div class="post-cover">
+                <div class="post-meta">
+                  <h3>Hello World</h3>
+                  <time datetime="2025-07-23">2025-07-23</time>
+                </div>
+              </div>
+            </a>
 
-    <div class="col-md-6 col-12 mb-4">
-  <div class="hovereffect">
-    <a href="/2025/07/23/hello-world/">
-      <img class="img-fluid portfolio-img" src="/images/unsplash.jpg" alt="Hello World">
-      <div class="overlay">
-        <span class="overlay-text">Hello World</span>
-      </div>
-    </a>
-  </div>
-</div>
-
-
-    <div class="col-md-6 col-12 mb-4">
-  <div class="hovereffect">
-    <a href="/2025/07/23/Hello-World-0/">
-      <img class="img-fluid portfolio-img" src="/images/unsplash.jpg" alt="Hello World">
-      <div class="overlay">
-        <span class="overlay-text">Hello World</span>
-      </div>
-    </a>
-  </div>
-</div>
-
-
-
-      </div>
+            <a class="post-card" href="/2025/07/23/Hello-World-0/" data-cover="/assets/img/covers/hello-world-0.webp">
+              <div class="post-cover">
+                <div class="post-meta">
+                  <h3>Hello World</h3>
+                  <time datetime="2025-07-23">2025-07-23</time>
+                </div>
+              </div>
+            </a>
+          </div>
       
       </div>
 
@@ -127,6 +121,7 @@
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+<script src="/js/cover.js?v=post-card-overlay-20251022"></script>
 
   </body>
 </html>
