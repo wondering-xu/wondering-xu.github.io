@@ -27,7 +27,7 @@
 
   <!-- Custom CSS -->
   
-<link rel="stylesheet" href="/css/styles.css?v=post-card-overlay-20251022">
+<link rel="stylesheet" href="/css/styles.css?v=footer-uv-1">
 
 
   <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -109,11 +109,10 @@
       
       </div>
 
-    <!-- 修改水印文字：调整下方 footer.site-watermark 文案 -->
     <footer class="site-watermark" aria-label="网站水印与访问计数">
       <span class="brand">@废废</span>
       <span class="divider"> · </span>
-      <span>第<span id="site-pv" aria-live="polite">--</span>个幸运儿，感谢来访</span>
+      <span>第<span id="site-uv">--</span>个幸运儿，感谢来访</span>
     </footer>
 
     <!-- After footer scripts -->
@@ -122,7 +121,24 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 <script src="/js/cover.js?v=post-card-overlay-20251022"></script>
 
-    <script src="/js/site-watermark.js" defer></script>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <script>
+      // 仅显示站点 UV（独立访客）。busuanzi 加载后会注入 busuanzi_value_site_uv。
+      (function(){
+        function showUV(){
+          var el=document.getElementById('site-uv');
+          var uv=document.getElementById('busuanzi_value_site_uv');
+          if(el&&uv){ el.textContent=uv.textContent||'--'; }
+        }
+        // 创建隐藏占位，等待 busuanzi 写入
+        var hidden=document.createElement('span');
+        hidden.id='busuanzi_value_site_uv';
+        hidden.style.display='none';
+        document.body.appendChild(hidden);
+        // 轮询一次，最多 3 秒
+        var t=0, i=setInterval(function(){ t+=200; showUV(); if(t>=3000){clearInterval(i);} },200);
+      })();
+    </script>
 
   </body>
 </html>

@@ -747,48 +747,30 @@ body.lightbox-open {
   }
 }
 
-/* 调整水印样式：修改以下 .site-watermark 样式块 */
+/* 页面底部访客水印 */
 .site-watermark {
   position: fixed;
   left: 50%;
-  bottom: 1.25rem;
+  bottom: 8px;
   transform: translateX(-50%);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.35rem;
-  padding: 0.45rem 0.9rem;
-  border-radius: 999px;
-  background: rgba(17, 24, 39, 0.58);
-  color: #ffffff;
-  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.92);
+  font-size: 12px;
   line-height: 1.4;
-  text-shadow: 0 2px 8px rgba(15, 23, 42, 0.45);
-  box-shadow: 0 8px 22px rgba(15, 23, 42, 0.28);
-  backdrop-filter: blur(6px);
+  font-weight: 400;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+  z-index: 9999;
   pointer-events: none;
-  z-index: 900;
-  letter-spacing: 0.05em;
-}
-
-.site-watermark .brand {
-  font-weight: 700;
-  letter-spacing: 0.08em;
 }
 
 .site-watermark .divider {
-  opacity: 0.65;
+  opacity: 0.8;
+  margin: 0 0.25em;
 }
 
-@media (max-width: 576px) {
+@media (max-width: 480px) {
   .site-watermark {
-    bottom: 0.75rem;
-    padding: 0.35rem 0.75rem;
-    font-size: 0.78rem;
-    max-width: calc(100% - 1.5rem);
-    flex-wrap: wrap;
-    text-align: center;
-    gap: 0.25rem;
+    font-size: 11px;
+    bottom: 6px;
   }
 }
 
