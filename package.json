@@ -7,7 +7,11 @@
     "build": "hexo generate",
     "clean": "hexo clean",
     "deploy": "hexo deploy",
-    "server": "hexo server"
+    "server": "hexo server",
+    "sync-notion": "node scripts/notion-sync.js",
+    "auto-sync": "node scripts/notion-auto-sync.js",
+    "webhook": "node scripts/notion-webhook.js",
+    "test-integration": "node scripts/test-integration.js"
   },
   "dependencies": {
     "hexo": "^7.3.0",
@@ -19,6 +23,11 @@
     "hexo-renderer-marked": "^6.0.0",
     "hexo-renderer-stylus": "^3.0.0",
     "hexo-server": "^3.0.0",
-    "hexo-cli": "^4.3.0"
+    "hexo-cli": "^4.3.0",
+    "@notionhq/client": "^2.2.15",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "node-cron": "^3.0.3",
+    "axios": "^1.7.7"
   }
 }

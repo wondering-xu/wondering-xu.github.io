@@ -1,0 +1,58 @@
+name: Notion Auto Sync and Deploy
+
+on:
+  push:
+    branches: [ main, feature-notion-flow-auto-publish ]
+  workflow_dispatch:
+  schedule:
+    # Run every 30 minutes
+    - cron: '*/30 * * * *'
+
+jobs:
+  sync-and-deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+        
+    - name: Install dependencies
+      run: npm ci
+      
+    - name: Setup environment variables
+      run: |
+        echo "NOTION_TOKEN=${{ secrets.NOTION_TOKEN }}" >> .env
+        echo "NOTION_DATABASE_ID=${{ secrets.NOTION_DATABASE_ID }}" >> .env
+        echo "WEBHOOK_SECRET=${{ secrets.WEBHOOK_SECRET }}" >> .env
+        echo "BLOG_URL=${{ secrets.BLOG_URL }}" >> .env
+        
+    - name: Test Notion connection
+      run: npm run sync-notion -- --test
+      
+    - name: Sync posts from Notion
+      run: npm run sync-notion
+      
+    - name: Generate site
+      run: |
+        npm run clean
+        npm run build
+        
+    - name: Deploy to GitHub Pages
+      if: success()
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./public
+        
+    - name: Deploy to custom server
+      if: success() && secrets.DEPLOY_HOST
+      run: |
+        # Custom deployment script
+        echo "Deploying to custom server..."
+        # Add your custom deployment commands here
