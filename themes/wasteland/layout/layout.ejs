@@ -52,7 +52,7 @@
 
   <!-- Custom CSS -->
   
-<link rel="stylesheet" href="/css/styles.css?v=footer-uv-2">
+<link rel="stylesheet" href="/css/styles.css?v=footer-2">
 
 
   <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -127,27 +127,6 @@
   </div>
 </div>
 <% } %>
-    <footer class="site-watermark" aria-label="网站水印与访问计数">
-      <span class="brand">@<%= config.author %></span>
-      <span class="divider"> · </span>
-      <span>第<span id="site-uv">--</span>个幸运儿，感谢来访</span>
-    </footer>
-    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-    <script>
-      (function(){
-        function showUV(){
-          var el=document.getElementById('site-uv');
-          var uv=document.getElementById('busuanzi_value_site_uv');
-          if(el&&uv){ el.textContent=uv.textContent||'--'; }
-        }
-        var hidden=document.createElement('span');
-        hidden.id='busuanzi_value_site_uv';
-        hidden.style.display='none';
-        document.body.appendChild(hidden);
-        var t=0,i=setInterval(function(){t+=200;showUV();if(t>=3000){clearInterval(i)}},200);
-      })();
-    </script>
 
-
-  </body>
+   </body>
 </html>
