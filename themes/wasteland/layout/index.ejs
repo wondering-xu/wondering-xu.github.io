@@ -1,0 +1,18 @@
+<div class="post-grid">
+  <!--
+    🖼️ 封面图自定义说明：
+    - 将封面图放在 /assets/img/covers/ 下（推荐 WebP，宽度 ≥ 1200px）
+    - 在每篇文章的 data-cover="/assets/img/covers/你的图片.webp" 属性中替换为对应文件名，实现独立封面
+    - 如果省略 data-cover，将自动回退到默认封面 /assets/img/bg-post.webp
+  -->
+  <% page.posts.forEach(function(post) { %>
+    <a class="post-card" href="<%- post.path %>" data-cover="<%= post.cover || '/assets/img/bg-post.webp' %>">
+      <div class="post-cover">
+        <div class="post-meta">
+          <h3><%= post.title %></h3>
+          <time datetime="<%= post.date %>"><%= post.date %></time>
+        </div>
+      </div>
+    </a>
+  <% }); %>
+</div>
