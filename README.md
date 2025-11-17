@@ -2,6 +2,25 @@
 
 这是一个使用 Hexo 预渲染输出的静态作品集 / 博客站点。站内摄影集已经按“生活 / 旅行 / 随手拍 / 人像”分类，并针对旅行分类提供了欧洲、日本、新西兰、东南亚与国内五个子分区。
 
+## 🚀 新功能：Notion Flow 自动发布
+
+现在支持通过 Notion 写作并自动发布到博客！详见 [Notion集成文档](./NOTION_INTEGRATION.md)
+
+### 快速开始
+```bash
+# 安装依赖
+npm install
+
+# 设置Notion集成
+./setup-notion.sh
+
+# 手动同步文章
+npm run sync-notion
+
+# 启动自动同步
+npm run auto-sync
+```
+
 ## 摄影集目录结构
 
 所有图片资源统一放在 `assets/photos/` 下，不同分类各自拥有独立文件夹：
