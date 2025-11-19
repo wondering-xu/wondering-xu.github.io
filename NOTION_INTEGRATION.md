@@ -53,13 +53,14 @@ POSTS_DIR=source/_posts
 #### 3.2 创建博客数据库
 
 1. 在Notion中创建新的数据库页面
-2. 配置数据库属性：
-   - **Title** (标题) - Title类型
-   - **Status** (状态) - Select类型，选项：Draft, Published
-   - **Published Date** (发布日期) - Date类型
-   - **Tags** (标签) - Multi-select类型
-   - **Cover** (封面图) - Files类型
-   - **Excerpt** (摘要) - Rich text类型
+2. 配置数据库属性（支持中英文字段名）：
+   - **Title** 或 **标题** - Title类型（必需）
+   - **Status** 或 **状态** - Select类型，选项：Draft/Published 或 草稿/已发布（必需）
+   - **Published Date** 或 **发布日期** - Date类型（必需）
+   - **Tags** 或 **标签** - Multi-select类型（可选）
+   - **Cover** 或 **封面图** 或 **封面** - Files类型（可选）
+   - **Excerpt** 或 **摘要** - Rich text类型（可选）
+   - **Category** 或 **分类** - Select类型（可选）
 
 3. 分享数据库给Integration：
    - 点击数据库右上角的"Share"
@@ -67,6 +68,8 @@ POSTS_DIR=source/_posts
    - 授予"Can edit"权限
 
 4. 复制数据库ID（从URL中获取）
+
+> 💡 **提示**：字段名支持中英文混用。系统会自动检测并使用正确的字段名。
 
 #### 3.3 配置Webhook（可选）
 
@@ -158,15 +161,24 @@ npm run webhook
 
 ```markdown
 ---
-title: "文章标题"
-date: "2025-01-15"
+title: 文章标题
+date: 2025-01-15
 tags: ["技术", "博客"]
-cover: "https://example.com/cover.jpg"
-excerpt: "文章摘要"
+cover: https://example.com/cover.jpg
+excerpt: 文章摘要
+category: 技术
 ---
 
 文章内容...
 ```
+
+**Front Matter 字段说明**：
+- `title`: 文章标题（必需）
+- `date`: 发布日期，格式为 YYYY-MM-DD（必需）
+- `tags`: 标签列表（可选）
+- `cover`: 封面图 URL（可选）
+- `excerpt`: 文章摘要（可选）
+- `category`: 文章分类（可选）
 
 ## 🛠️ 高级配置
 

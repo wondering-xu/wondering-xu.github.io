@@ -25,17 +25,50 @@ class NotionSync {
   // Get all published posts from Notion database
   async getPublishedPosts() {
     try {
+      // Try to get database properties to find the correct property names
+      const database = await this.notion.databases.retrieve({
+        database_id: this.databaseId
+      });
+      
+      let statusProperty = 'Status';
+      let sortProperty = 'Published Date';
+      
+      // Try to find the actual property names (support both Chinese and English)
+      for (const prop of Object.keys(database.properties)) {
+        const propType = database.properties[prop].type;
+        if (propType === 'select') {
+          if (prop === 'Status' || prop === '状态') {
+            statusProperty = prop;
+          }
+        }
+        if (propType === 'date') {
+          if (prop === 'Published Date' || prop === '发布日期') {
+            sortProperty = prop;
+          }
+        }
+      }
+      
       const response = await this.notion.databases.query({
         database_id: this.databaseId,
         filter: {
-          property: 'Status',
-          select: {
-            equals: 'Published'
-          }
+          or: [
+            {
+              property: statusProperty,
+              select: {
+                equals: 'Published'
+              }
+            },
+            {
+              property: statusProperty,
+              select: {
+                equals: '已发布'
+              }
+            }
+          ]
         },
         sorts: [
           {
-            property: 'Published Date',
+            property: sortProperty,
             direction: 'descending'
           }
         ]
@@ -52,20 +85,23 @@ class NotionSync {
   async notionToHexoPost(page) {
     const properties = page.properties;
     
-    // Extract title
-    const title = properties.Title?.title?.[0]?.plain_text || 'Untitled';
+    // Try to extract title (support both Chinese and English field names)
+    const title = this.getPropertyValue(properties, ['Title', '标题'], 'title') || 'Untitled';
     
-    // Extract published date
-    const publishedDate = properties['Published Date']?.date?.start || new Date().toISOString().split('T')[0];
+    // Try to extract published date (support both Chinese and English field names)
+    const publishedDate = this.getPropertyValue(properties, ['Published Date', '发布日期'], 'date') || new Date().toISOString().split('T')[0];
     
-    // Extract tags
-    const tags = properties.Tags?.multi_select?.map(tag => tag.name) || [];
+    // Try to extract tags (support both Chinese and English field names)
+    const tags = this.getPropertyValue(properties, ['Tags', '标签'], 'multi_select') || [];
     
-    // Extract cover image
-    const cover = properties.Cover?.files?.[0]?.file?.url || properties.Cover?.files?.[0]?.external?.url || '';
+    // Try to extract cover image (support both Chinese and English field names)
+    const cover = this.getPropertyValue(properties, ['Cover', '封面图', '封面'], 'files') || '';
     
-    // Extract excerpt
-    const excerpt = properties.Excerpt?.rich_text?.[0]?.plain_text || '';
+    // Try to extract excerpt (support both Chinese and English field names)
+    const excerpt = this.getPropertyValue(properties, ['Excerpt', '摘要'], 'text') || '';
+    
+    // Try to extract category (support both Chinese and English field names)
+    const category = this.getPropertyValue(properties, ['Category', '分类'], 'select') || '';
     
     // Get page content
     const content = await this.getPageContent(page.id);
@@ -76,7 +112,8 @@ class NotionSync {
       date: publishedDate,
       tags: tags,
       cover: cover,
-      excerpt: excerpt
+      excerpt: excerpt,
+      category: category
     };
 
     // Remove empty properties
@@ -91,6 +128,33 @@ class NotionSync {
       frontmatter: frontmatter,
       content: content
     };
+  }
+
+  // Helper method to get property value with support for multiple field names
+  getPropertyValue(properties, fieldNames, type) {
+    for (const fieldName of fieldNames) {
+      if (!properties[fieldName]) continue;
+      
+      const prop = properties[fieldName];
+      
+      switch (type) {
+        case 'title':
+          return prop.title?.[0]?.plain_text;
+        case 'date':
+          return prop.date?.start;
+        case 'multi_select':
+          return prop.multi_select?.map(item => item.name) || [];
+        case 'select':
+          return prop.select?.name;
+        case 'files':
+          return prop.files?.[0]?.file?.url || prop.files?.[0]?.external?.url || '';
+        case 'text':
+          return prop.rich_text?.[0]?.plain_text;
+        default:
+          return null;
+      }
+    }
+    return null;
   }
 
   // Get page content as Markdown
@@ -182,13 +246,22 @@ class NotionSync {
       fs.mkdirSync(this.postsDir, { recursive: true });
     }
     
-    // Generate file content
+    // Generate file content with proper YAML formatting
     const frontmatterYaml = Object.entries(post.frontmatter)
       .map(([key, value]) => {
         if (Array.isArray(value)) {
           return `${key}: [${value.map(v => `"${v}"`).join(', ')}]`;
-        } else if (typeof value === 'string' && value.includes(':')) {
-          return `${key}: "${value}"`;
+        } else if (typeof value === 'string') {
+          // Quote strings that contain special characters, but keep dates unquoted
+          if (/^\d{4}-\d{2}-\d{2}$/.test(value)) {
+            return `${key}: ${value}`;
+          } else if (value.includes(':') || value.includes('"') || value.includes("'")) {
+            return `${key}: "${value.replace(/"/g, '\\"')}"`;
+          } else if (value.includes('\n')) {
+            return `${key}: |\n${value.split('\n').map(line => '  ' + line).join('\n')}`;
+          } else {
+            return `${key}: ${value}`;
+          }
         } else {
           return `${key}: ${value}`;
         }
