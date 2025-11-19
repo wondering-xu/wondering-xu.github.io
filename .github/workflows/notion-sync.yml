@@ -2,7 +2,7 @@ name: Notion Auto Sync and Deploy
 
 on:
   push:
-    branches: [ main, feature-notion-flow-auto-publish ]
+    branches: [ main, master, feat-notion-auto-publish ]
   workflow_dispatch:
   schedule:
     # Run every 30 minutes
