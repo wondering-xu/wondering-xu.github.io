@@ -5,9 +5,25 @@ require('dotenv').config();
 
 class NotionSync {
   constructor() {
+    this.validateEnv();
     this.notion = new Client({ auth: process.env.NOTION_TOKEN });
     this.databaseId = process.env.NOTION_DATABASE_ID;
     this.postsDir = process.env.POSTS_DIR || 'source/_posts';
+  }
+
+  // Validate required environment variables
+  validateEnv() {
+    const required = ['NOTION_TOKEN', 'NOTION_DATABASE_ID'];
+    const missing = required.filter(env => !process.env[env]);
+    
+    if (missing.length > 0) {
+      console.error('❌ 缺少必需的环境变量:');
+      missing.forEach(env => {
+        console.error(`   - ${env}`);
+      });
+      console.error('\n请在 .env 文件中配置这些变量或设置 GitHub Secrets');
+      throw new Error(`缺少必需的环境变量: ${missing.join(', ')}`);
+    }
   }
 
   // Initialize Notion connection
@@ -198,9 +214,31 @@ class NotionSync {
       case 'image':
         const imageUrl = block.image.file?.url || block.image.external?.url;
         return `![${block.image.caption?.[0]?.plain_text || ''}](${imageUrl})`;
+      case 'divider':
+        return '---';
+      case 'callout':
+        return this.richTextToMarkdown(block.callout.rich_text);
+      case 'toggle':
+        const toggleText = this.richTextToMarkdown(block.toggle.rich_text);
+        return `<details><summary>${toggleText}</summary>\n\n</details>`;
+      case 'table':
+        return this.tableToMarkdown(block);
+      case 'video':
+        const videoUrl = block.video.file?.url || block.video.external?.url;
+        return `🎥 视频: ${videoUrl}`;
+      case 'file':
+        const fileUrl = block.file.file?.url || block.file.external?.url;
+        const fileName = block.file.name || '文件';
+        return `📎 [${fileName}](${fileUrl})`;
       default:
         return '';
     }
+  }
+
+  // Convert Notion table to Markdown
+  tableToMarkdown(block) {
+    // 返回简单的表格占位符，因为 Notion 表格需要特殊处理
+    return '| 表格内容 |\n| --- |\n| 请查看原始 Notion 页面以获取完整内容 |\n';
   }
 
   // Convert Notion rich text to Markdown
@@ -210,13 +248,18 @@ class NotionSync {
     return richText.map(text => {
       let content = text.plain_text;
       
-      if (text.annotations.bold) content = `**${content}**`;
-      if (text.annotations.italic) content = `*${content}*`;
-      if (text.annotations.strikethrough) content = `~~${content}~~`;
-      if (text.annotations.underline) content = `<u>${content}</u>`;
-      if (text.annotations.code) content = `\`${content}\``;
+      if (text.annotations.code) {
+        content = `\`${content}\``;
+      } else {
+        if (text.annotations.bold) content = `**${content}**`;
+        if (text.annotations.italic) content = `*${content}*`;
+        if (text.annotations.strikethrough) content = `~~${content}~~`;
+        if (text.annotations.underline) content = `<u>${content}</u>`;
+      }
       
-      if (text.href) content = `[${content}](${text.href})`;
+      if (text.href) {
+        content = `[${content}](${text.href})`;
+      }
       
       return content;
     }).join('');
@@ -224,26 +267,65 @@ class NotionSync {
 
   // Generate filename from title and date
   generateFilename(title, date) {
-    const slug = title
+    // Convert title to slug: support both Chinese and English
+    let slug = title
       .toLowerCase()
-      .replace(/[^\w\s-]/g, '')
+      .replace(/[^\w\s-\u4e00-\u9fff]/g, '') // Keep Chinese characters and English alphanumeric
       .replace(/\s+/g, '-')
       .replace(/-+/g, '-')
-      .trim('-');
+      .replace(/^-+|-+$/g, '');
     
-    const dateObj = new Date(date);
-    const dateStr = dateObj.toISOString().split('T')[0];
+    // If slug is empty or too short, use title hash
+    if (!slug || slug.length === 0) {
+      slug = 'article-' + Math.random().toString(36).substring(2, 8);
+    }
+    
+    // Limit slug length to avoid too long filenames
+    if (slug.length > 50) {
+      slug = slug.substring(0, 50).replace(/-+$/, '');
+    }
+    
+    // Parse date correctly
+    let dateStr;
+    if (typeof date === 'string') {
+      // If date is already in YYYY-MM-DD format
+      if (/^\d{4}-\d{2}-\d{2}$/.test(date)) {
+        dateStr = date;
+      } else {
+        // Try to parse as ISO date
+        const dateObj = new Date(date);
+        if (!isNaN(dateObj.getTime())) {
+          dateStr = dateObj.toISOString().split('T')[0];
+        } else {
+          dateStr = new Date().toISOString().split('T')[0];
+        }
+      }
+    } else {
+      dateStr = new Date().toISOString().split('T')[0];
+    }
     
     return `${dateStr}-${slug}.md`;
   }
 
   // Save post to file system
   async savePost(post) {
-    const filePath = path.join(this.postsDir, post.filename);
+    let filePath = path.join(this.postsDir, post.filename);
     
     // Create directory if it doesn't exist
     if (!fs.existsSync(this.postsDir)) {
       fs.mkdirSync(this.postsDir, { recursive: true });
+    }
+    
+    // Handle filename conflicts
+    let finalFilename = post.filename;
+    let counter = 0;
+    while (fs.existsSync(filePath) && counter < 10) {
+      counter++;
+      const parts = post.filename.split('.');
+      const name = parts.slice(0, -1).join('.');
+      const ext = parts[parts.length - 1];
+      finalFilename = `${name}-${counter}.${ext}`;
+      filePath = path.join(this.postsDir, finalFilename);
     }
     
     // Generate file content with proper YAML formatting
@@ -272,7 +354,11 @@ class NotionSync {
     
     try {
       fs.writeFileSync(filePath, fileContent, 'utf8');
-      console.log(`✅ 文章已保存: ${post.filename}`);
+      if (finalFilename !== post.filename) {
+        console.log(`✅ 文章已保存: ${finalFilename} (原名冲突，已重命名)`);
+      } else {
+        console.log(`✅ 文章已保存: ${post.filename}`);
+      }
       return true;
     } catch (error) {
       console.error(`❌ 保存文章失败 ${post.filename}:`, error.message);
@@ -283,39 +369,65 @@ class NotionSync {
   // Sync all posts
   async syncAll() {
     console.log('🚀 开始同步Notion文章...');
+    console.log(`📁 配置的文章目录: ${this.postsDir}`);
     
     const isConnected = await this.testConnection();
     if (!isConnected) {
+      console.error('❌ 无法连接到Notion，同步中止');
       return false;
     }
     
-    const posts = await this.getPublishedPosts();
-    console.log(`📝 找到 ${posts.length} 篇已发布文章`);
+    let posts = [];
+    try {
+      posts = await this.getPublishedPosts();
+      console.log(`📝 找到 ${posts.length} 篇已发布文章`);
+    } catch (error) {
+      console.error('❌ 获取文章失败:', error.message);
+      return false;
+    }
+    
+    if (posts.length === 0) {
+      console.log('⚠️ 没有找到已发布的文章');
+      return true;
+    }
     
     let successCount = 0;
+    let failureCount = 0;
+    
     for (const page of posts) {
       try {
         const post = await this.notionToHexoPost(page);
         const saved = await this.savePost(post);
-        if (saved) successCount++;
+        if (saved) {
+          successCount++;
+        } else {
+          failureCount++;
+        }
       } catch (error) {
-        console.error('同步文章失败:', error.message);
+        console.error('❌ 同步文章失败:', error.message);
+        failureCount++;
       }
     }
     
-    console.log(`✨ 同步完成! 成功同步 ${successCount}/${posts.length} 篇文章`);
-    return successCount === posts.length;
+    console.log(`\n✨ 同步完成!`);
+    console.log(`  ✅ 成功: ${successCount} 篇`);
+    if (failureCount > 0) {
+      console.log(`  ❌ 失败: ${failureCount} 篇`);
+    }
+    
+    return failureCount === 0;
   }
 }
 
 // CLI interface
 async function main() {
-  const sync = new NotionSync();
-  
-  if (process.argv.includes('--test')) {
-    await sync.testConnection();
-  } else if (process.argv.includes('--help')) {
-    console.log(`
+  try {
+    const sync = new NotionSync();
+    
+    if (process.argv.includes('--test')) {
+      await sync.testConnection();
+    } else if (process.argv.includes('--help')) {
+      console.log(`
 使用方法:
   node notion-sync.js [选项]
 
@@ -327,14 +439,27 @@ async function main() {
   NOTION_TOKEN          Notion API token
   NOTION_DATABASE_ID    Notion数据库ID
   POSTS_DIR             文章保存目录 (默认: source/_posts)
-    `);
-  } else {
-    await sync.syncAll();
+      `);
+    } else {
+      const success = await sync.syncAll();
+      if (!success) {
+        process.exit(1);
+      }
+    }
+  } catch (error) {
+    console.error('\n❌ 致命错误:', error.message);
+    if (process.env.DEBUG) {
+      console.error(error.stack);
+    }
+    process.exit(1);
   }
 }
 
 if (require.main === module) {
-  main().catch(console.error);
+  main().catch(error => {
+    console.error('未捕获的错误:', error);
+    process.exit(1);
+  });
 }
 
 module.exports = NotionSync;
