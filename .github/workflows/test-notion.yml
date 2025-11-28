@@ -1,0 +1,54 @@
+name: Test Notion Connection
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ test-notion-connection-diagnostics ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Setup environment variables
+        run: |
+          echo "NOTION_TOKEN=${{ secrets.NOTION_TOKEN }}" >> .env
+          echo "NOTION_DATABASE_ID=${{ secrets.NOTION_DATABASE_ID }}" >> .env
+        env:
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+          NOTION_DATABASE_ID: ${{ secrets.NOTION_DATABASE_ID }}
+      
+      - name: Test Notion Connection
+        run: node scripts/test-notion.js
+        env:
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+          NOTION_DATABASE_ID: ${{ secrets.NOTION_DATABASE_ID }}
+      
+      - name: Check GitHub Secrets
+        run: |
+          echo "=== GitHub Secrets 检查 ==="
+          if [ -z "${{ secrets.NOTION_TOKEN }}" ]; then
+            echo "❌ NOTION_TOKEN 未设置"
+          else
+            echo "✓ NOTION_TOKEN 已设置"
+          fi
+          
+          if [ -z "${{ secrets.NOTION_DATABASE_ID }}" ]; then
+            echo "❌ NOTION_DATABASE_ID 未设置"
+          else
+            echo "✓ NOTION_DATABASE_ID 已设置"
+          fi

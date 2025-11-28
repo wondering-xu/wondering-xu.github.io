@@ -11,7 +11,8 @@
     "sync-notion": "node scripts/notion-sync.js",
     "auto-sync": "node scripts/notion-auto-sync.js",
     "webhook": "node scripts/notion-webhook.js",
-    "test-integration": "node scripts/test-integration.js"
+    "test-integration": "node scripts/test-integration.js",
+    "test-notion": "node scripts/test-notion.js"
   },
   "dependencies": {
     "hexo": "^7.3.0",
