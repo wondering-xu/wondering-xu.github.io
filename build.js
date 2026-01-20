@@ -10,7 +10,7 @@ const config = {
   title: '废土世界',
   author: '废废',
   language: 'zh-CN',
-  url: 'https://wasteland.world'
+  url: 'https://wondering-xu.github.io'
 };
 
 // 主题路径
