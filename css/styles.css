@@ -1,5 +1,8 @@
 body {
-    font-family: 'Open Sans', sans-serif;
+    fbody {
+  background-image: url("/images/bg.jpg");
+  background-size: cover; /* 让图片铺满整个墙皮 */
+}
 }
 
 form {
