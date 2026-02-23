@@ -1,7 +1,7 @@
 body {
     fbody {
-  background-image: url("/images/bg.jpg");
-  background-size: cover; /* 让图片铺满整个墙皮 */
+  background: url("/images/bg.jpg") no-repeat fixed center !important;
+  background-size: cover !important;/* 让图片铺满整个墙皮 */
 }
 }
 
