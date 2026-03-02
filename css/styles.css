@@ -373,3 +373,69 @@ body[class*="page"] .portfolio-content:not(:has(.post-date)),
     background: transparent !important;
     box-shadow: none !important;
 }
+
+/* ================================================= */
+/* 废土世界标题风格美化 */
+/* ================================================= */
+.year-month-title, 
+.archive-year {
+    font-family: "Courier New", Courier, monospace !important; /* 强制打字机字体 */
+    font-size: 1.8rem !important;
+    font-weight: 800 !important;
+    color: #1a1a1a !important; /* 深黑色 */
+    text-transform: uppercase; /* 如果有英文，强制大写 */
+    letter-spacing: 5px !important; /* 拉大字间距，产生呼吸感和荒凉感 */
+    
+    /* 废土风核心：底部双粗线 */
+    border-bottom: 3px solid #000 !important;
+    padding-bottom: 8px !important;
+    margin: 40px 0 20px 0 !important;
+    
+    /* 装饰：模拟印章或档案感 */
+    display: inline-block !important;
+    position: relative;
+}
+
+/* 在标题前加一个“档案编号”感的小符号 */
+.year-month-title::before,
+.archive-year::before {
+    content: "NO. " !important;
+    font-size: 0.7rem !important;
+    vertical-align: middle;
+    letter-spacing: 1px;
+    opacity: 0.6;
+}
+
+/* ================================================= */
+/* 导航栏“废土世界”Logo 深度美化 */
+/* ================================================= */
+.navbar-brand {
+    /* 1. 字体：硬核打字机风格 */
+    font-family: "Courier New", Courier, monospace !important;
+    font-size: 1.5rem !important;
+    font-weight: 900 !important;
+    
+    /* 2. 颜色与背景：黑底白字（标牌感） */
+    color: #ffffff !important; 
+    background-color: #000000 !important;
+    
+    /* 3. 间距：拉开字间距，更有荒凉感 */
+    letter-spacing: 4px !important;
+    padding: 8px 18px !important;
+    
+    /* 4. 废土细节：微弱的倾斜和边框 */
+    display: inline-block !important;
+    transform: rotate(-1deg); /* 稍微歪一点，更有废墟感 */
+    border: 2px solid #000;
+    box-shadow: 4px 4px 0px #888; /* 灰色重影，像复印失败的档案 */
+    
+    transition: all 0.3s ease;
+}
+
+/* 悬停效果：反色变亮 */
+.navbar-brand:hover {
+    background-color: #ff4400 !important; /* 悬停变警示橙色 */
+    color: #fff !important;
+    text-decoration: none !important;
+    transform: rotate(0deg) scale(1.05);
+}
