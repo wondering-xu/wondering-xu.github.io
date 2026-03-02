@@ -375,67 +375,67 @@ body[class*="page"] .portfolio-content:not(:has(.post-date)),
 }
 
 /* ================================================= */
-/* 废土世界标题风格美化 */
+/* 乐高像素气泡风 Logo 定制 */
 /* ================================================= */
-.year-month-title, 
-.archive-year {
-    font-family: "Courier New", Courier, monospace !important; /* 强制打字机字体 */
-    font-size: 1.8rem !important;
-    font-weight: 800 !important;
-    color: #1a1a1a !important; /* 深黑色 */
-    text-transform: uppercase; /* 如果有英文，强制大写 */
-    letter-spacing: 5px !important; /* 拉大字间距，产生呼吸感和荒凉感 */
-    
-    /* 废土风核心：底部双粗线 */
-    border-bottom: 3px solid #000 !important;
-    padding-bottom: 8px !important;
-    margin: 40px 0 20px 0 !important;
-    
-    /* 装饰：模拟印章或档案感 */
-    display: inline-block !important;
-    position: relative;
-}
 
-/* 在标题前加一个“档案编号”感的小符号 */
-.year-month-title::before,
-.archive-year::before {
-    content: "NO. " !important;
-    font-size: 0.7rem !important;
-    vertical-align: middle;
-    letter-spacing: 1px;
-    opacity: 0.6;
-}
-
-/* ================================================= */
-/* 导航栏“废土世界”Logo 深度美化 */
-/* ================================================= */
 .navbar-brand {
-    /* 1. 字体：硬核打字机风格 */
-    font-family: "Courier New", Courier, monospace !important;
-    font-size: 1.5rem !important;
+    position: relative !important;
+    font-family: "Courier New", Courier, monospace !important; /* 乐高感字体 */
     font-weight: 900 !important;
+    font-size: 1.4rem !important;
+    color: #000000 !important; /* 黑色文字 */
+    background-color: #ffffff !important; /* 白色底 */
     
-    /* 2. 颜色与背景：黑底白字（标牌感） */
-    color: #ffffff !important; 
-    background-color: #000000 !important;
+    /* 像素边框效果：利用多重阴影模拟厚重的黑边 */
+    padding: 10px 20px !important;
+    border: 4px solid #000 !important;
+    box-shadow: 
+        4px 4px 0px #000, 
+        -4px -4px 0px #000, 
+        4px -4px 0px #000, 
+        -4px 4px 0px #000 !important;
     
-    /* 3. 间距：拉开字间距，更有荒凉感 */
-    letter-spacing: 4px !important;
-    padding: 8px 18px !important;
-    
-    /* 4. 废土细节：微弱的倾斜和边框 */
     display: inline-block !important;
-    transform: rotate(-1deg); /* 稍微歪一点，更有废墟感 */
-    border: 2px solid #000;
-    box-shadow: 4px 4px 0px #888; /* 灰色重影，像复印失败的档案 */
-    
-    transition: all 0.3s ease;
+    margin-right: 20px !important;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    transition: all 0.2s ease;
 }
 
-/* 悬停效果：反色变亮 */
+/* 右上角的粉色像素爱心 */
+.navbar-brand::after {
+    content: "💗" !important; /* 也可以换成其他爱心符号 */
+    position: absolute !important;
+    top: -15px !important;
+    right: -15px !important;
+    font-size: 24px !important;
+    filter: drop-shadow(2px 2px 0px #000); /* 给爱心也加个像素黑边 */
+    transform: rotate(15deg);
+}
+
+/* 气泡下方的小尾巴（乐高拼接感） */
+.navbar-brand::before {
+    content: "" !important;
+    position: absolute !important;
+    bottom: -14px !important;
+    left: 20px !important;
+    width: 15px !important;
+    height: 10px !important;
+    background: #fff !important;
+    border-left: 4px solid #000 !important;
+    border-right: 4px solid #000 !important;
+    border-bottom: 4px solid #000 !important;
+    box-shadow: 4px 0px 0px #000 !important;
+}
+
+/* 鼠标悬停时的可爱跳动 */
 .navbar-brand:hover {
-    background-color: #ff4400 !important; /* 悬停变警示橙色 */
-    color: #fff !important;
+    transform: scale(1.05) !important;
     text-decoration: none !important;
-    transform: rotate(0deg) scale(1.05);
+    background-color: #f0f0f0 !important; /* 悬停时稍微变灰一点点 */
+}
+
+.navbar-brand:hover::after {
+    transform: rotate(0deg) scale(1.2) !important;
+    transition: 0.2s;
 }
