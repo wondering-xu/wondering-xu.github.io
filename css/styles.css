@@ -286,3 +286,80 @@ body::after {
     line-height: 1.8 !important;
     backdrop-filter: blur(5px); /* 可选：增加一点磨砂玻璃质感，让背景更柔和 */
 }
+
+/* ================================================= */
+/* 6. 精准页面背景控制 (只对随心记/文章页 & 留言墙生效) */
+/* ================================================= */
+
+
+/* 1. 先统一给所有内容容器加上 60% 透明蓝粉背景 */
+.portfolio-content, .post-content, .article-entry {
+    background-color: rgba(184, 205, 243, 0.6) !important; 
+    padding: 35px !important;
+    border-radius: 20px !important;
+    border: 1px solid rgba(98, 152, 196, 0.3) !important;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05) !important;
+    margin-top: 25px !important;
+    line-height: 1.8 !important;
+    backdrop-filter: blur(5px) !important;
+}
+
+/* 2. 【核心】针对摄影集页面进行排除 */
+/* 只要页面里出现了照片网格 (.photo-grid) 或分类网格 (.photo-category-grid)，就强制透明 */
+.index-container:has(.photo-grid) .portfolio-content,
+.index-container:has(.photo-category-grid) .portfolio-content,
+.portfolio-content:has(.photo-grid),
+.portfolio-content:has(.photo-category-grid),
+.photo-grid, 
+.photo-category-grid {
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    padding: 0 !important; /* 摄影集不需要额外的内边距 */
+}
+
+/* 3. 【核心】针对空白页 (About) 进行排除 */
+/* 大多数主题的空白页路径包含 about，或者你可以通过类名排除 */
+body[class*="about"] .portfolio-content,
+body[class*="page"] .portfolio-content:not(.post-content) {
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+}
+
+/* 4. 确保留言墙保留背景 */
+/* 留言墙通常不包含 photo-grid，所以它会保留第一条定义的样式 */
+
+/* ================================================= */
+/* 终极锁定：彻底去除空白页的背景边框 */
+/* ================================================= */
+
+/* 1. 尝试通过 body 的类名（About 页面通用类名）强行透明 */
+body.page-about .portfolio-content,
+body.about .portfolio-content,
+body[class*="about"] .portfolio-content {
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    padding: 0 !important;
+}
+
+/* 2. 尝试通过文章标题排除：
+   如果你的空白页标题是 "About" 或 "关于"，且它没有日期。
+   这会把没有日期的单页面（Page）背景去掉 */
+.portfolio-content:not(:has(.post-date-box)):not(:has(.post-date)) {
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+}
+
+/* 3. 万能补丁：如果以上都失效，请尝试直接针对 About 页面的 ID */
+#about .portfolio-content,
+article[id*="about"] {
+    background-color: transparent !important;
+    border: none !important;
+}
