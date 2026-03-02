@@ -94,7 +94,7 @@
 
           <div class="index-container">
   <!-- 大海背景 -->
-  <div class="beach-background"></div>
+ 
   
   <div class="posts-wrapper">
     
@@ -152,7 +152,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url('/themes/wasteland/source/images/beach-bg.jpg');
+    background-image: url('/photos/hai.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -175,13 +175,13 @@
   }
   
   .year-month-title {
-    font-size: 24px;
-    color: #B4A7D6;
-    border-bottom: 3px solid #DA70D6;
-    padding-bottom: 10px;
-    margin-bottom: 20px;
-    font-weight: bold;
-  }
+  font-size: 24px;
+  color: #000000; /* 原为 #B4A7D6 */
+  border-bottom: 3px solid #000000; /* 原为 #DA70D6 */
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
   
   /* 文章列表 */
   .posts-list {
@@ -191,20 +191,19 @@
   }
   
   .post-item {
-    display: flex;
-    gap: 20px;
-    padding: 15px;
-    border-radius: 12px;
-    background: linear-gradient(135deg, #F0E6FF 0%, #E6F3FF 100%);
-    transition: all 0.3s ease;
-    border-left: 4px solid #DA70D6;
+  display: flex;
+  gap: 20px;
+  padding: 15px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #f9f9f9 0%, #ffffff 100%); /* 建议把紫色渐变也改淡或去掉 */
+  transition: all 0.3s ease;
+  border-left: 4px solid #000000; /* 原为 #DA70D6 改成黑色 */
+}
   }
   
-  .post-item:hover {
-    background: linear-gradient(135deg, #E6D9FF 0%, #D9ECFF 100%);
-    transform: translateX(10px);
-    box-shadow: 0 5px 20px rgba(218, 112, 214, 0.2);
-  }
+  .post-title a:hover {
+  color: #666666; /* 原为 #DA70D6 */
+}
   
   .post-title {
     flex: 0 0 35%;
