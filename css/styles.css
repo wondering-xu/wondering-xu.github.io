@@ -19,79 +19,151 @@ body::after {
     background-image: var(--bg-url, url("/photos/hai.jpg")) !important;
 }
 
-/* 彻底杀死干扰层 */
-.beach-background, .index-container::before, [class*="background"], [id*="background"] {
+/* 彻底杀死干扰层与那个 Unsplash 图片 */
+.beach-background, .index-container::before, .project-img, 
+[class*="background"], [id*="background"], img[src*="unsplash"] {
     display: none !important;
     background: none !important;
     visibility: hidden !important;
 }
 
+* ================================================= */
+/* 修正版：首页/归档清单极致简洁化 */
 /* ================================================= */
-/* 2. 首页文章收录框 (上下排版 & 极致紧凑) */
-/* ================================================= */
-.index-container {
-    background: transparent !important;
-    box-shadow: none !important;
-    padding: 0 !important;
+
+/* 1. 处理年份分类标题 */
+.year-month-title {
+    display: block !important;
+    font-size: 1.5rem !important;
+    font-weight: bold !important;
+    color: #000 !important;
+    border-bottom: 2px solid #000 !important;
+    margin: 30px 0 15px 0 !important;
+    padding-bottom: 5px !important;
+    visibility: visible !important; /* 确保可见 */
 }
 
-.posts-wrapper {
-    background: rgba(255, 255, 255, 0.7) !important;
-    backdrop-filter: blur(12px) !important;
-    -webkit-backdrop-filter: blur(12px) !important;
-    border-radius: 20px !important;
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05) !important;
-    padding: 20px 25px !important; /* 缩小内边距 */
-    margin: 30px auto !important;
-    max-width: 850px;
+/* 2. 尝试精准隐藏月份（如果你的月份被包在 span 或带有 month 类名里） */
+.year-month-title span, 
+.year-month-title .month,
+.archive-month {
+    display: none !important;
 }
 
-/* 强制列表项为上下排版 */
-.posts-wrapper .post-item {
-    display: flex !important;
-    flex-direction: column !important; /* 核心：垂直堆叠 */
-    align-items: flex-start !important; /* 内容左对齐 */
-    border-bottom: 1px solid rgba(0,0,0,0.05) !important; 
+/* 3. 彻底粉碎左右分栏：让标题和日期绝对上下排列 */
+.post-item {
+    display: block !important; /* 强制块级布局，不许并排 */
+    width: 100% !important;
+    padding: 10px 0 !important;
+    border-bottom: 1px solid rgba(0,0,0,0.05) !important;
+}
+
+/* 强制标题独占一行 */
+.post-title, .post-title-link, .post-item a {
+    display: block !important; 
+    width: 100% !important;
+    text-align: left !important;
+    margin-bottom: 4px !important;
+    color: #000 !important;
+    text-decoration: none !important;
+    font-size: 1.1rem !important;
+}
+
+/* 强制日期掉到下一行 */
+.post-date, .post-time, .post-meta, time {
+    display: block !important;
+    width: 100% !important;
+    text-align: left !important;
+    color: #888 !important;
+    font-size: 0.8rem !important;
+}
+
+/* 4. 处理文章详情页的左右分栏 (Bootstrap 修复) */
+.col-lg-4, .col-lg-8 {
+    flex: 0 0 100% !important;
+    max-width: 100% !important;
+    width: 100% !important;
+}
+
+/* ================================================= */
+/* 3. 归档页与首页清单：只显年份 & 上下排版 */
+/* ================================================= */
+
+/* 隐藏月份分类标题（根据你的描述，这是要去除的部分） */
+.year-month-title {
+    font-size: 0 !important; /* 隐藏原始文字 */
+    border-bottom: 2px solid #000 !important;
+    margin: 25px 0 10px 0 !important;
+}
+
+/* 如果你的年份是通过 data 属性或者特定的 span 渲染的 */
+.year-month-title::before {
+    content: "Archive" !important; /* 你可以手动写死，或根据需要修改 */
+    font-size: 1.5rem !important;
+    visibility: visible !important;
+    font-weight: 800;
+}
+
+/* 文章条目容器：极致紧凑 */
+.post-item, .post-item-custom {
+    display: block !important;    
+    padding: 6px 0 !important;    
     margin-bottom: 0 !important;
-    padding: 6px 10px !important; /* 极小间距 */
-    transition: all 0.3s ease;
-    background: transparent !important;
+    border-bottom: 1px solid rgba(0,0,0,0.05) !important;
+    transition: all 0.2s ease;
 }
 
-.posts-wrapper .post-item:last-child {
+.post-item:last-child, .post-item-custom:last-of-type {
     border-bottom: none !important;
 }
 
-/* 标题样式：独占一行 */
+/* 文章标题：强制占满一行 */
 .post-title, .post-title-link, .post-item a {
-    display: block !important;
-    width: 100% !important;
-    text-align: left !important;
-    margin: 0 0 2px 0 !important;
-    color: #000000 !important;
+    display: block !important;    
+    color: #000 !important;
     font-size: 1.1rem !important;
     font-weight: 600 !important;
-    text-decoration: none;
-    line-height: 1.3 !important;
+    text-decoration: none !important;
+    margin-bottom: 2px !important;
 }
 
-/* 日期/元数据样式：紧贴标题下方 */
-.post-date, .post-time, .post-meta {
-    display: block !important;
-    width: 100% !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    text-align: left !important;
-    font-size: 11px !important; /* 稍小一点增加精致感 */
+/* 文章日期：强制掉到标题下方 */
+.post-date, .post-time, .post-meta, time {
+    display: block !important;    
     color: #888 !important;
-    font-weight: normal !important;
+    font-size: 0.75rem !important;
+    margin: 0 !important;
+    width: 100% !important;
 }
 
-.post-item:hover {
-    background: rgba(255, 255, 255, 0.3) !important;
-    transform: translateX(5px);
+/* 悬停效果 */
+.post-item:hover, .post-item-custom:hover {
+    background: rgba(0,0,0,0.02) !important;
+    padding-left: 5px !important;
 }
 
+/* ================================================= */
+/* 4. 图片强效控制 (正文) */
+/* ================================================= */
+.post-content img {
+    max-width: 70% !important;
+    height: auto !important;
+    margin: 20px auto !important;
+    display: block !important;
+    border-radius: 8px;
+}
+
+@media (max-width: 768px) {
+    .post-content img { max-width: 100% !important; }
+}
+
+/* ================================================= */
+/* 5. 导航栏补丁 */
+/* ================================================= */
+.navbar-nav .nav-link { 
+    color: #000 !important; 
+    font-weight: 600; 
+}
 /* ================================================= */
 /* 3. 摄影集分类样式 (国家名字改黑 & 深色卡片) */
 /* ================================================= */
@@ -201,4 +273,16 @@ body::after {
 @media (max-width: 768px) {
     .photo-row { flex-direction: column !important; }
     .photo-row img, .post-content img { max-width: 100% !important; }
+}
+
+/* 文章正文粉色背景修饰 - 60% 透明度版 */
+.portfolio-content, .post-content, .article-entry {
+    background-color: rgba(184, 205, 243, 0.75) !important; /* 0.6 即为 60% 的不透明度 */
+    padding: 35px !important;
+    border-radius: 20px !important;
+    border: 1px solid rgba(98, 152, 196, 0.3) !important; /* 边框也稍微加深一点点 */
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05) !important;
+    margin-top: 25px !important;
+    line-height: 1.8 !important;
+    backdrop-filter: blur(5px); /* 可选：增加一点磨砂玻璃质感，让背景更柔和 */
 }

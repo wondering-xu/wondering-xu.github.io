@@ -93,59 +93,47 @@
 </nav>
 
           <div class="index-container">
-  <!-- 大海背景 -->
- 
-  
   <div class="posts-wrapper">
     
     
     
-      <div class="year-month-group">
-        <h2 class="year-month-title">2026年3月</h2>
+      <div class="year-group">
+        <h2 class="year-only-title">2026年</h2>
         
         <div class="posts-list">
           
-            <div class="post-item">
-              <div class="post-title">
-                <a href="2026/03/02/2026-03-02-australia-day-off/">休息日的思考</a>
+            <div class="custom-post-item">
+              <div class="post-title-box">
+                <a href="/2026/03/02/2026-03-02-australia-day-off/">休息日的思考</a>
               </div>
-              <div class="post-excerpt">
-                &lt;/...
+              <div class="post-date-box">
+                2026-03-02
+              </div>
+            </div>
+          
+            <div class="custom-post-item">
+              <div class="post-title-box">
+                <a href="/2026/02/23/2026-02-23-hello-my-blog/">欢迎来到废土世界</a>
+              </div>
+              <div class="post-date-box">
+                2026-02-23
               </div>
             </div>
           
         </div>
       </div>
     
-      <div class="year-month-group">
-        <h2 class="year-month-title">2026年2月</h2>
+      <div class="year-group">
+        <h2 class="year-only-title">2025年</h2>
         
         <div class="posts-list">
           
-            <div class="post-item">
-              <div class="post-title">
-                <a href="2026/02/23/2026-02-23-hello-my-blog/">欢迎来到废土世界</a>
+            <div class="custom-post-item">
+              <div class="post-title-box">
+                <a href="/2025/07/23/2025-07-23-hello-world/">Hello World</a>
               </div>
-              <div class="post-excerpt">
-                &lt;a href=&#34;#“在废土之上，每一个记录者都是文明的火种。”-——-废废&#34; class=&#34;headerlink&#34; tit...
-              </div>
-            </div>
-          
-        </div>
-      </div>
-    
-      <div class="year-month-group">
-        <h2 class="year-month-title">2025年7月</h2>
-        
-        <div class="posts-list">
-          
-            <div class="post-item">
-              <div class="post-title">
-                <a href="2025/07/23/2025-07-23-hello-world/">Hello World</a>
-              </div>
-              <div class="post-excerpt">
-                你好呀，这个是我的第一篇博客。
-...
+              <div class="post-date-box">
+                2025-07-23
               </div>
             </div>
           
@@ -156,125 +144,41 @@
 </div>
 
 <style>
-  .index-container {
-    position: relative;
-    min-height: 100vh;
-    overflow: hidden;
+  /* 这里的样式直接写在模板里，确保覆盖力 */
+  .year-only-title {
+    font-size: 24px;
+    color: #000;
+    border-bottom: 2px solid #000;
+    padding-bottom: 10px;
+    margin: 40px 0 20px 0;
+    font-weight: bold;
   }
-  
-  /* 大海背景 */
-  .beach-background {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-image: url('/photos/hai.jpg');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    opacity: 0.35;
-    z-index: -1;
+
+  .custom-post-item {
+    display: block !important; /* 强制块级，不许并列 */
+    padding: 15px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
   }
-  
-  .posts-wrapper {
-    max-width: 900px;
-    margin: 60px auto;
-    padding: 20px;
-    background: rgba(255, 255, 255, 0.95);
-    border-radius: 20px;
-    box-shadow: 0 10px 40px rgba(180, 167, 214, 0.2);
-  }
-  
-  /* 年月分组 */
-  .year-month-group {
-    margin-bottom: 50px;
-  }
-  
-  .year-month-title {
-  font-size: 24px;
-  color: #000000; /* 原为 #B4A7D6 */
-  border-bottom: 3px solid #000000; /* 原为 #DA70D6 */
-  padding-bottom: 10px;
-  margin-bottom: 20px;
-  font-weight: bold;
-}
-  
-  /* 文章列表 */
-  .posts-list {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-  }
-  
-  .post-item {
-  display: flex;
-  gap: 20px;
-  padding: 15px;
-  border-radius: 12px;
-  background: linear-gradient(135deg, #f9f9f9 0%, #ffffff 100%); /* 建议把紫色渐变也改淡或去掉 */
-  transition: all 0.3s ease;
-  border-left: 4px solid #000000; /* 原为 #DA70D6 改成黑色 */
-}
-  }
-  
-  .post-title a:hover {
-  color: #666666; /* 原为 #DA70D6 */
-}
-  
-  .post-title {
-    flex: 0 0 35%;
-    min-width: 200px;
-  }
-  
-  .post-title a {
+
+  .post-title-box a {
+    display: block;
     font-size: 18px;
     font-weight: bold;
-    color: #333333;
+    color: #333;
     text-decoration: none;
-    transition: color 0.3s ease;
-    word-break: break-word;
+    margin-bottom: 5px;
   }
-  
-  .post-title a:hover {
-    color: #DA70D6;
+
+  .post-date-box {
+    font-size: 13px;
+    color: #999;
   }
-  
-  .post-excerpt {
-    flex: 1;
-    font-size: 14px;
-    color: #666666;
-    line-height: 1.6;
-    word-break: break-word;
-  }
-  
-  /* 响应式设计 */
-  @media (max-width: 768px) {
-    .post-item {
-      flex-direction: column;
-      gap: 10px;
-    }
-    
-    .post-title {
-      flex: 1;
-      min-width: auto;
-    }
-    
-    .posts-wrapper {
-      margin: 30px 10px;
-      border-radius: 15px;
-    }
-    
-    .year-month-title {
-      font-size: 20px;
-    }
-    
-    .post-title a {
-      font-size: 16px;
-    }
+
+  /* 悬停效果 */
+  .custom-post-item:hover {
+    background: rgba(0,0,0,0.01);
   }
 </style>
-
       
       </div>
 
@@ -289,3 +193,4 @@
 
    </body>
 </html>
+
