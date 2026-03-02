@@ -110,6 +110,17 @@
     --bg-url: url("/photos/M.jpg") !important;
 }
 </style>
+
+<style>
+  /* 只有在这个页面，强行杀掉所有背景和边框 */
+  .portfolio-content, .post-content, .article-entry {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+    padding: 0 !important;
+  }
+</style>
 </div>
 
 

@@ -333,13 +333,34 @@ body[class*="page"] .portfolio-content:not(.post-content) {
 /* 留言墙通常不包含 photo-grid，所以它会保留第一条定义的样式 */
 
 /* ================================================= */
-/* 终极锁定：彻底去除空白页的背景边框 */
+/* 核心修正：精准保留随心记/留言墙框架，剔除空白页/摄影集 */
 /* ================================================= */
 
-/* 1. 尝试通过 body 的类名（About 页面通用类名）强行透明 */
-body.page-about .portfolio-content,
-body.about .portfolio-content,
-body[class*="about"] .portfolio-content {
+/* 1. 【开启】随心记文章详情页 & 留言墙的淡蓝粉框架 */
+/* 我们通过探测“日期”或“评论区”来精准定位这两个页面 */
+.post-content, 
+.portfolio-content:has(.post-date), 
+.portfolio-content:has(.post-time),
+.portfolio-content:has(#tcomment) {
+    background-color: rgba(184, 205, 243, 0.6) !important; /* 你的淡蓝粉色 */
+    padding: 35px !important;
+    border-radius: 20px !important;
+    border: 1px solid rgba(98, 152, 196, 0.3) !important;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05) !important;
+    margin-top: 25px !important;
+    line-height: 1.8 !important;
+    backdrop-filter: blur(5px) !important;
+    display: block !important;
+}
+
+/* 2. 【强行剔除】空白页 (About) 和 摄影集 (Photos) 的背景 */
+/* 只要页面是关于页，或者是摄影网格，就强制透明，不留边框 */
+body[class*="about"] .portfolio-content,
+body[class*="page"] .portfolio-content:not(:has(.post-date)),
+.portfolio-content:has(.photo-grid),
+.portfolio-content:has(.photo-category-grid),
+.photo-grid, 
+.photo-category-grid {
     background-color: transparent !important;
     border: none !important;
     box-shadow: none !important;
@@ -347,19 +368,8 @@ body[class*="about"] .portfolio-content {
     padding: 0 !important;
 }
 
-/* 2. 尝试通过文章标题排除：
-   如果你的空白页标题是 "About" 或 "关于"，且它没有日期。
-   这会把没有日期的单页面（Page）背景去掉 */
-.portfolio-content:not(:has(.post-date-box)):not(:has(.post-date)) {
-    background-color: transparent !important;
-    border: none !important;
+/* 3. 首页文章列表保持透明（只显示你的上下排版文字） */
+.posts-wrapper {
+    background: transparent !important;
     box-shadow: none !important;
-    backdrop-filter: none !important;
-}
-
-/* 3. 万能补丁：如果以上都失效，请尝试直接针对 About 页面的 ID */
-#about .portfolio-content,
-article[id*="about"] {
-    background-color: transparent !important;
-    border: none !important;
 }
