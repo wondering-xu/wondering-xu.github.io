@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  var DEFAULT_COVER = '/assets/img/bg-post.webp';
+  var DEFAULT_COVER = ';
   var cards = document.querySelectorAll('.post-card');
 
   if (!cards.length) {

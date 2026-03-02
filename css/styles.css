@@ -27,7 +27,7 @@ body::after {
 }
 
 /* ================================================= */
-/* 2. 首页文章收录框 (单一 70% 透明框 & 紧凑间距) */
+/* 2. 首页文章收录框 (上下排版 & 极致紧凑) */
 /* ================================================= */
 .index-container {
     background: transparent !important;
@@ -36,42 +36,60 @@ body::after {
 }
 
 .posts-wrapper {
-    background: rgba(255, 255, 255, 0.7) !important; /* 70% 透明白色 */
+    background: rgba(255, 255, 255, 0.7) !important;
     backdrop-filter: blur(12px) !important;
     -webkit-backdrop-filter: blur(12px) !important;
     border-radius: 20px !important;
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05) !important;
-    padding: 25px 30px !important;
-    margin: 40px auto !important;
-    max-width: 900px;
+    padding: 20px 25px !important; /* 缩小内边距 */
+    margin: 30px auto !important;
+    max-width: 850px;
 }
 
-/* --- 极小间距优化 --- */
-.post-item {
-    background: transparent !important; 
-    border-left: 4px solid #000000 !important; 
-    margin-bottom: 10px !important;    /* 极小间距 */
-    padding: 5px 15px !important;      /* 极小内边距 */
+/* 强制列表项为上下排版 */
+.posts-wrapper .post-item {
+    display: flex !important;
+    flex-direction: column !important; /* 核心：垂直堆叠 */
+    align-items: flex-start !important; /* 内容左对齐 */
+    border-bottom: 1px solid rgba(0,0,0,0.05) !important; 
+    margin-bottom: 0 !important;
+    padding: 6px 10px !important; /* 极小间距 */
     transition: all 0.3s ease;
+    background: transparent !important;
+}
+
+.posts-wrapper .post-item:last-child {
+    border-bottom: none !important;
+}
+
+/* 标题样式：独占一行 */
+.post-title, .post-title-link, .post-item a {
+    display: block !important;
+    width: 100% !important;
+    text-align: left !important;
+    margin: 0 0 2px 0 !important;
+    color: #000000 !important;
+    font-size: 1.1rem !important;
+    font-weight: 600 !important;
+    text-decoration: none;
+    line-height: 1.3 !important;
+}
+
+/* 日期/元数据样式：紧贴标题下方 */
+.post-date, .post-time, .post-meta {
+    display: block !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    text-align: left !important;
+    font-size: 11px !important; /* 稍小一点增加精致感 */
+    color: #888 !important;
+    font-weight: normal !important;
 }
 
 .post-item:hover {
     background: rgba(255, 255, 255, 0.3) !important;
-    transform: translateX(8px);
-}
-
-/* 标题纯黑 */
-h1, h2, h3, .year-month-title, .post-title a {
-    color: #000000 !important;
-    font-family: "SimLi", "SimSun", "Microsoft YaHei", sans-serif;
-    text-decoration: none;
-}
-
-.year-month-title { 
-    border-bottom: 3px solid #000000 !important; 
-    padding-bottom: 5px; 
-    margin-bottom: 15px;
-    font-weight: bold;
+    transform: translateX(5px);
 }
 
 /* ================================================= */
@@ -97,17 +115,15 @@ h1, h2, h3, .year-month-title, .post-title a {
     text-decoration: none !important;
 }
 
-/* 强行将卡片内的所有文字改为黑色 */
 .photo-category-card .category-title, 
 .photo-category-card .category-desc,
 .photo-category-link {
     color: #000000 !important; 
-    text-shadow: none !important; /* 确保黑色文字清晰 */
+    text-shadow: none !important;
 }
 
 .photo-category-card:hover { transform: translateY(-6px); }
 
-/* 分类卡片颜色 (深色鲜艳渐变) */
 .photo-category-life { background: linear-gradient(135deg, #fda4af, #ec4899) !important; }
 .photo-category-travel { background: linear-gradient(135deg, #38bdf8, #2563eb) !important; }
 .photo-category-snaps { background: linear-gradient(135deg, #34d399, #10b981) !important; }
@@ -154,4 +170,35 @@ h1, h2, h3, .year-month-title, .post-title a {
 @media (max-width: 768px) {
     body::after { background-position: center center !important; opacity: 0.6 !important; }
     .posts-wrapper { margin: 20px 10px !important; padding: 20px !important; }
+}
+
+/* ================================================= */
+/* 5. 文章正文图片强效控制 */
+/* ================================================= */
+.post-content img {
+    max-width: 60% !important;
+    height: auto !important;
+    margin: 10px auto !important;
+    display: block !important;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.photo-row {
+    display: flex !important;
+    gap: 15px !important;
+    justify-content: center !important;
+    align-items: flex-start !important;
+    margin: 20px 0 !important;
+}
+
+.photo-row img {
+    max-width: 45% !important;
+    margin: 0 !important;
+    display: inline-block !important;
+}
+
+@media (max-width: 768px) {
+    .photo-row { flex-direction: column !important; }
+    .photo-row img, .post-content img { max-width: 100% !important; }
 }
