@@ -439,3 +439,27 @@ body[class*="page"] .portfolio-content:not(:has(.post-date)),
     transform: rotate(0deg) scale(1.2) !important;
     transition: 0.2s;
 }
+.journal-card{
+    padding:28px;
+    margin-bottom:35px;
+
+    border:1px solid #ddd;
+    border-radius:14px;
+
+    background:#fafafa;
+}
+
+.journal-card h2{
+    margin-top:0;
+    margin-bottom:12px;
+}
+
+.journal-card p{
+    line-height:1.8;
+    color:#666;
+}
+
+.journal-card a{
+    font-weight:600;
+    text-decoration:none;
+}
