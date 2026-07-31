@@ -503,11 +503,9 @@ body[class*="page"] .portfolio-content:not(:has(.post-date)),
     font-weight: 500 !important;
 }
 
-/* 统一强制控制所有日记正文/段落的字体大小 */
-.portfolio-content p, 
-.post-content p, 
-.article-entry p {
-    font-size: 0.9rem !important; /* 你可以改成 0.85rem 或 0.95rem 来调整大小 */
-    line-height: 1.8 !important;   /* 保持舒适的行高 */
-    color: #333 !important;        /* 让文字颜色更清晰 */
+/* 只精准修改 journal 页面里日期下面的正文文字大小，其他页面绝不受影响 */
+.portfolio-content p {
+    font-size: 0.85rem !important; /* 你可以把 0.85rem 改成 0.8rem（更小）或者 0.9rem（适中） */
+    line-height: 1.7 !important;   /* 保证字间距依然舒适清晰 */
+}
 }
