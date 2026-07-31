@@ -439,61 +439,66 @@ body[class*="page"] .portfolio-content:not(:has(.post-date)),
     transform: rotate(0deg) scale(1.2) !important;
     transition: 0.2s;
 }
+./* 6. Life Journal 首页引导卡片（已去白底和边框） */
+/* ================================================= */
 .journal-card {
-    padding: 32px;
-    margin-bottom: 35px;
-    border-radius: 16px;
-    background: rgba(255, 255, 255, 0.88);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.8);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-/* 鼠标悬停卡片时微微上浮，提升精致感 */
-.journal-card {
-    padding: 32px;
-    margin-bottom: 35px;
-    
-    /* 把背景色改成透明，去掉白色卡片感 */
-    background: transparent; 
-    
-    /* 清除边框和阴影 */
-    border: none;
-    box-shadow: none;
-    backdrop-filter: none;
+    padding: 0 0 32px 0 !important;
+    margin-bottom: 35px !important;
+    background: transparent !important; 
+    border: none !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
 }
 
 .journal-card h2 {
-    font-size: 0.7rem;
-    font-weight: 600;
-    letter-spacing: -0.3px;
-    color: #1a1a1a;
-    margin-bottom: 10px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
+    font-size: 1.1rem !important;
+    font-weight: 600 !important;
+    letter-spacing: -0.3px !important;
+    color: #1a1a1a !important;
+    margin-bottom: 8px !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
 }
 
 .journal-card p {
-    font-size: 0.6rem;
-    color: #666;
-    line-height: 1.6;
-    margin-bottom: 20px;
+    font-size: 0.85rem !important;
+    color: #555 !important;
+    line-height: 1.6 !important;
+    margin-bottom: 12px !important;
 }
 
 .journal-card a {
-    font-size: 0.65rem;
-    font-weight: 600;
-    color: #0066cc;
-    text-decoration: none;
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
-    transition: gap 0.2s ease;
+    font-size: 0.85rem !important;
+    font-weight: 600 !important;
+    color: #0066cc !important;
+    text-decoration: none !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 4px !important;
+    transition: gap 0.2s ease !important;
 }
 
-/* 鼠标悬停链接时箭头往右动一下 */
 .journal-card a:hover {
-    gap: 8px;
+    gap: 8px !important;
+}
+
+/* ================================================= */
+/* 7. 【核心新增】精准控制进入文章详情页后的字体大小 */
+/* ================================================= */
+/* 调小文章正文里的标题 */
+.post-content h1, 
+.post-content h2, 
+.post-content h3, 
+.article-entry h1, 
+.article-entry h2 {
+    font-size: 1.1rem !important;
+}
+
+/* 调小文章正文里的段落文字大小 */
+.post-content p, 
+.article-entry p, 
+.post-content li {
+    font-size: 1.0rem !important; /* 调整这里的数值可以控制文章正文大小，比如 0.85rem 或 0.9rem */
+    line-height: 1.3 !important;
 }
