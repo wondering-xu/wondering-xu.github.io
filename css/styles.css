@@ -496,13 +496,9 @@ body[class*="page"] .portfolio-content:not(:has(.post-date)),
 }
 
 
-/* 终极强制：让首页列表里的大日期（2026-07-31）变小 */
-.journal-card h2, 
-.post-list h2, 
-.posts-wrapper h2,
-.post-item h2,
-h2.post-title,
-article h2 {
-    font-size: 0.9rem !important; /* 你可以改成 1rem 或者 0.9rem，数字越小字越小 */
+/* 终极精准拦截：直接按住这个容器里的 h2 标题/日期 */
+div.portfolio-content h2,
+.col-12.portfolio-content h2 {
+    font-size:0.9rem !important; /* 你可以根据需要改成 1rem 甚至 0.9rem */
     font-weight: 500 !important;
 }
