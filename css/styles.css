@@ -496,16 +496,18 @@ body[class*="page"] .portfolio-content:not(:has(.post-date)),
 }
 
 
-/* 精准只改日志列表或文章详情页里的那个大日期 H2，绝对不影响其他 H2 */
+/* 1. 精准锁死 Journal 里的日期 H2 标题字号 */
 .portfolio-content > h2,
 .journal-card h2 {
-    font-size: 0.9rem !important; /* 把 1.1rem 改成你想要的字体大小，例如 1rem 或 0.9rem */
+    font-size: 0.9rem !important;
     font-weight: 500 !important;
 }
 
-/* 只精准修改 journal 页面里日期下面的正文文字大小，其他页面绝不受影响 */
+/* 2. 彻底统一正文文字大小、行高、以及段落之间的空隙，消除高低不平 */
 .portfolio-content p {
-    font-size: 0.85rem !important; /* 你可以把 0.85rem 改成 0.8rem（更小）或者 0.9rem（适中） */
-    line-height: 1.7 !important;   /* 保证字间距依然舒适清晰 */
+    font-size: 0.85rem !important; 
+    line-height: 1.8 !important;   /* 统一行间距 */
+    margin-top: 0.4rem !important;  /* 统一段落上方间距 */
+    margin-bottom: 0.6rem !important; /* 统一段落下方间距 */
 }
 }
