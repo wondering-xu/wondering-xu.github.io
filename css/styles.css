@@ -451,13 +451,21 @@ body[class*="page"] .portfolio-content:not(:has(.post-date)),
 }
 
 /* 鼠标悬停卡片时微微上浮，提升精致感 */
-.journal-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.1);
+.journal-card {
+    padding: 32px;
+    margin-bottom: 35px;
+    
+    /* 把背景色改成透明，去掉白色卡片感 */
+    background: transparent; 
+    
+    /* 清除边框和阴影 */
+    border: none;
+    box-shadow: none;
+    backdrop-filter: none;
 }
 
 .journal-card h2 {
-    font-size: 1.2rem;
+    font-size: 0.7rem;
     font-weight: 600;
     letter-spacing: -0.3px;
     color: #1a1a1a;
