@@ -450,15 +450,17 @@ body[class*="page"] .portfolio-content:not(:has(.post-date)),
 }
 
 .journal-card h2{
-    margin-top:0;
-    margin-bottom:12px;
+    font-size: 1.7rem;
+    font-weight: 500;
+    letter-spacing: -0.5px;
+    line-height: 1.2;
 }
 
 .journal-card p{
+    font-size:0.95rem;
+    color:#777;
     line-height:1.8;
-    color:#666;
 }
-
 .journal-card a{
     font-weight:600;
     text-decoration:none;
