@@ -503,11 +503,21 @@ body[class*="page"] .portfolio-content:not(:has(.post-date)),
     font-weight: 500 !important;
 }
 
-/* 2. 终极统一：强制收紧 journal 里面所有段落的上下间距，让它们高矮一致 */
+/* 2. 终极清爽版：不分 p 还是 br，直接把 journal 容器内的整体行高和文字段落间距全部强行统一 */
+.portfolio-content {
+    line-height: 1.6 !important; /* 把大容器的默认行高压紧一点 */
+}
+
 .portfolio-content p {
-    font-size: 0.85rem !important; 
-    line-height: 1.7 !important;       /* 统一行高 */
-    margin-top: 0 !important;          /* 清除段落上方多余空白 */
-    margin-bottom: 0.5rem !important;  /* 把段落间距缩短并固定死（原先是 1rem 太大了） */
+    font-size: 0.85rem !important;
+    line-height: 1.6 !important;
+    margin-top: 0 !important;
+    margin-bottom: 0.4rem !important; /* 统一缩短段落底部的空隙 */
+}
+
+.portfolio-content br {
+    display: block !important;
+    content: "" !important;
+    margin-top: 0.4rem !important; /* 如果你是用单回车换行的，这行会强制把行间距拉到跟段落一样的高度 */
 }
 }
