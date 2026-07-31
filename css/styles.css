@@ -496,9 +496,9 @@ body[class*="page"] .portfolio-content:not(:has(.post-date)),
 }
 
 
-/* 终极精准拦截：直接按住这个容器里的 h2 标题/日期 */
-div.portfolio-content h2,
-.col-12.portfolio-content h2 {
-    font-size:0.9rem !important; /* 你可以根据需要改成 1rem 甚至 0.9rem */
+/* 精准只改日志列表或文章详情页里的那个大日期 H2，绝对不影响其他 H2 */
+.portfolio-content > h2,
+.journal-card h2 {
+    font-size: 0.9rem !important; /* 把 1.1rem 改成你想要的字体大小，例如 1rem 或 0.9rem */
     font-weight: 500 !important;
 }
