@@ -502,3 +502,12 @@ body[class*="page"] .portfolio-content:not(:has(.post-date)),
     font-size: 0.9rem !important; /* 把 1.1rem 改成你想要的字体大小，例如 1rem 或 0.9rem */
     font-weight: 500 !important;
 }
+
+/* 统一强制控制所有日记正文/段落的字体大小 */
+.portfolio-content p, 
+.post-content p, 
+.article-entry p {
+    font-size: 0.9rem !important; /* 你可以改成 0.85rem 或 0.95rem 来调整大小 */
+    line-height: 1.8 !important;   /* 保持舒适的行高 */
+    color: #333 !important;        /* 让文字颜色更清晰 */
+}
