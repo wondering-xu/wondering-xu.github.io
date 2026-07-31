@@ -503,11 +503,11 @@ body[class*="page"] .portfolio-content:not(:has(.post-date)),
     font-weight: 500 !important;
 }
 
-/* 2. 彻底统一正文文字大小、行高、以及段落之间的空隙，消除高低不平 */
+/* 2. 终极统一：强制收紧 journal 里面所有段落的上下间距，让它们高矮一致 */
 .portfolio-content p {
     font-size: 0.85rem !important; 
-    line-height: 1.8 !important;   /* 统一行间距 */
-    margin-top: 0.4rem !important;  /* 统一段落上方间距 */
-    margin-bottom: 0.6rem !important; /* 统一段落下方间距 */
+    line-height: 1.7 !important;       /* 统一行高 */
+    margin-top: 0 !important;          /* 清除段落上方多余空白 */
+    margin-bottom: 0.5rem !important;  /* 把段落间距缩短并固定死（原先是 1rem 太大了） */
 }
 }
