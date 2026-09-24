@@ -19,7 +19,7 @@
 
   <!-- Title -->
   
-  <title>我的日记 - 废土世界</title>
+  <title>随想日记 - 废土世界</title>
 
   <!--Favicon-->
   <link rel="icon" href="/favicon/favicon.ico">
@@ -96,149 +96,110 @@
     
 <div class="col-12 pt-lg-3 mb-4 px-4 portfolio-content">
   <style>
-/* 折叠面板样式 */
-details.month-journal {
-  background: #f8f9fa;
-  border: 1px solid #e9ecef;
-  border-radius: 8px;
-  margin-bottom: 16px;
-  padding: 12px 16px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+/* 年份折叠框 */
+details.year-block {
+  background: #ffffff;
+  border: 1px solid #eaeaea;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  padding: 15px 20px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.03);
 }
 
-summary.month-title {
-  font-size: 1.1rem;
-  font-weight: 600;
+summary.year-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #333;
   cursor: pointer;
-  color: #2b2b2b;
-  user-select: none;
   outline: none;
 }
 
-/* 日历盒子与网格样式 */
-.calendar-box {
-  max-width: 350px;
-  margin: 15px auto;
-  background: #ffffff;
-  padding: 12px;
-  border-radius: 8px;
-  border: 1px solid #eaeaea;
+/* 时间轴容器 */
+.timeline {
+  position: relative;
+  margin: 20px 0 10px 10px;
+  padding-left: 25px;
+  border-left: 2px solid #e0e0e0;
 }
 
-.cal-header, .cal-body {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  text-align: center;
-  gap: 4px;
+/* 时间轴节点 */
+.timeline-item {
+  position: relative;
+  margin-bottom: 25px;
 }
 
-.cal-header span {
-  font-size: 0.8rem;
-  font-weight: bold;
-  color: #888;
-  padding-bottom: 6px;
-}
-
-.cal-day {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 36px;
-  font-size: 0.85rem;
+.timeline-item::before {
+  content: "";
+  position: absolute;
+  left: -31px;
+  top: 5px;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
-  color: #ccc;
-}
-
-/* 有日记的日期样式 (带跳转链接) */
-.cal-day.has-entry {
-  background-color: #e3f2fd;
-  color: #0d6efd;
-  font-weight: bold;
-  text-decoration: none;
-  transition: all 0.2s ease;
-}
-
-.cal-day.has-entry:hover {
   background-color: #0d6efd;
-  color: #ffffff;
-  transform: scale(1.1);
+  border: 2px solid #fff;
+  box-shadow: 0 0 0 2px #0d6efd;
 }
 
-/* 日记卡片列表 */
-.journal-entry-card {
-  background: #ffffff;
-  border-left: 4px solid #0d6efd;
+/* 日记内容卡片 */
+.journal-date {
+  font-size: 0.85rem;
+  color: #888;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.journal-card {
+  background: #f9fbfd;
+  border: 1px solid #e3f2fd;
+  border-radius: 8px;
   padding: 12px 16px;
-  margin: 12px 0;
-  border-radius: 0 6px 6px 0;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.journal-card p {
+  margin: 0;
+  color: #444;
+  line-height: 1.6;
 }
 </style>
 
-<!-- 2026 年 9 月 折叠块 -->
-<details class="month-journal" open>
-  <summary class="month-title">📅 2026 年 09 月</summary>
+<!-- 2026 年（只需一年创建一个 details 框即可） -->
+<details class="year-block" open>
+  <summary class="year-title">🗓️ 2026 年 (2 篇记录)</summary>
   
-  <!-- 该月日历挂载点 -->
-  <div class="calendar-box" id="cal-2026-09"></div>
-
-  <!-- 当月日记列表 -->
-  <div class="journal-entries">
-    <div id="entry-2026-09-24" class="journal-entry-card">
-      <h4>2026-09-24 (星期四)</h4>
-      <p>今天为 Hexo 博客成功增加了按月折叠和动态日历功能！</p>
+  <div class="timeline">
+    <!-- 日记 1 -->
+    <div class="timeline-item">
+      <div class="journal-date">09 月 24 日 · 星期四</div>
+      <div class="journal-card">
+        <p>今天重新设计了日记页面的架构，改用时间轴形式后看起来舒服多了！</p>
+      </div>
     </div>
 
-<pre><code>&lt;div id=&quot;entry-2026-09-03&quot; class=&quot;journal-entry-card&quot;&gt;
-  &lt;h4&gt;2026-09-03 (星期四)&lt;/h4&gt;
-  &lt;p&gt;初秋的天气渐渐凉爽起来，今天完成了一次徒步。&lt;/p&gt;
+<pre><code>&lt;!-- 日记 2 --&gt;
+&lt;div class=&quot;timeline-item&quot;&gt;
+  &lt;div class=&quot;journal-date&quot;&gt;03 月 12 日 · 星期四&lt;/div&gt;
+  &lt;div class=&quot;journal-card&quot;&gt;
+    &lt;p&gt;春天到了，去公园散步顺便思考了一下最近的研究进度。&lt;/p&gt;
+  &lt;/div&gt;
 &lt;/div&gt;
 </code></pre>
   </div>
 </details>
 
-
-<script>
-// 日历动态渲染函数
-function buildCalendar(year, month, activeDays, targetId) {
-  const container = document.getElementById(targetId);
-  if (!container) return;
-
-  const firstDay = new Date(year, month - 1, 1).getDay(); // 当月第一天是周几
-  const totalDays = new Date(year, month, 0).getDate();  // 当月总天数
+<!-- 2025 年 -->
+<details class="year-block">
+  <summary class="year-title">🗓️ 2025 年 (1 篇记录)</summary>
   
-  let html = '<div class="cal-header">';
-  ['日', '一', '二', '三', '四', '五', '六'].forEach(d => html += `<span>${d}</span>`);
-  html += '</div><div class="cal-body">';
-
-  // 填充月初前的空格
-  for (let i = 0; i < firstDay; i++) {
-    html += '<span class="cal-day empty"></span>';
-  }
-
-  // 渲染 1号 到 当月最后一天
-  for (let day = 1; day <= totalDays; day++) {
-    const dayStr = day < 10 ? '0' + day : day;
-    const dateKey = `${year}-${String(month).padStart(2, '0')}-${dayStr}`;
-
-    if (activeDays.includes(dayStr)) {
-      // 如果当天有日记，生成带有锚点 #entry-YYYY-MM-DD 的跳转链接
-      html += `<a href="#entry-${dateKey}" class="cal-day has-entry" title="查看 ${day} 日日记">${day}</a>`;
-    } else {
-      html += `<span class="cal-day">${day}</span>`;
-    }
-  }
-
-  html += '</div>';
-  container.innerHTML = html;
-}
-
-// 页面加载完成后自动绘制日历
-document.addEventListener("DOMContentLoaded", function() {
-  // 配置 2026年9月 有日记的日期（填入日期数，如 ["03", "24"]）
-  buildCalendar(2026, 9, ["03", "24"], "cal-2026-09");
-});
-</script>
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="journal-date">11 月 05 日</div>
+      <div class="journal-card">
+        <p>今年第一篇也是最后一篇随想。</p>
+      </div>
+    </div>
+  </div>
+</details>
 </div>
 
 
