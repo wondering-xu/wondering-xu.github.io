@@ -1,0 +1,258 @@
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <!-- Head tag -->
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Title -->
+  
+  <title>我的日记 - 废土世界</title>
+
+  <!--Favicon-->
+  <link rel="icon" href="/favicon/favicon.ico">
+
+  <!--Description-->
+  
+  
+  
+
+  <!--Author-->
+  
+      <meta name="废废" content="John Doe">
+  
+
+  <!-- Pure CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Crimson+Text|Open+Sans:300,800" rel="stylesheet">
+
+  <!-- Custom CSS -->
+  
+<link rel="stylesheet" href="/css/styles.css?v=footer-2">
+
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+  <!-- Google Analytics -->
+  
+
+<meta name="generator" content="Hexo 7.3.0">
+  
+</head>
+
+
+  <body>
+      <div class="container-fluid navbar-container m-sm-5">
+      <!-- Header -->
+      <nav class="navbar navbar-toggleable-sm navbar-light px-1 py-3 my-3 mb-sm-5">
+  <a class="navbar-brand ml-2" href="/">废土世界</a>
+  <button class="navbar-toggler navbar-toggler-right py-2" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse text-center" id="navbarCollapse">
+    <ul class="navbar-nav my-auto">
+      <li class="nav-item">
+        <a class="nav-link " href="/"  title="随心记">随心记</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link " href="/photos/"  title="摄影集">摄影集</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link " href="/guestbook/"  title="留言墙">留言墙</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link " href="/about/"  title="空白页">空白页</a>
+      </li>
+    </ul>
+    <ul class="navbar-nav ml-auto my-auto">
+      <li class="nav-item">
+        <a class="nav-link nav-search" href="/search/" title="搜索" aria-label="搜索">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          <span class="d-none d-sm-inline"> 搜索</span>
+        </a>
+      </li>
+    </ul>
+    <hr class="hidden-md-up" />
+  </div>
+</nav>
+
+          <div class="row">
+    
+<div class="col-12 pt-lg-3 mb-4 px-4 portfolio-content">
+  <style>
+/* 折叠面板样式 */
+details.month-journal {
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  padding: 12px 16px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+}
+
+summary.month-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  color: #2b2b2b;
+  user-select: none;
+  outline: none;
+}
+
+/* 日历盒子与网格样式 */
+.calendar-box {
+  max-width: 350px;
+  margin: 15px auto;
+  background: #ffffff;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #eaeaea;
+}
+
+.cal-header, .cal-body {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+  gap: 4px;
+}
+
+.cal-header span {
+  font-size: 0.8rem;
+  font-weight: bold;
+  color: #888;
+  padding-bottom: 6px;
+}
+
+.cal-day {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 36px;
+  font-size: 0.85rem;
+  border-radius: 50%;
+  color: #ccc;
+}
+
+/* 有日记的日期样式 (带跳转链接) */
+.cal-day.has-entry {
+  background-color: #e3f2fd;
+  color: #0d6efd;
+  font-weight: bold;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.cal-day.has-entry:hover {
+  background-color: #0d6efd;
+  color: #ffffff;
+  transform: scale(1.1);
+}
+
+/* 日记卡片列表 */
+.journal-entry-card {
+  background: #ffffff;
+  border-left: 4px solid #0d6efd;
+  padding: 12px 16px;
+  margin: 12px 0;
+  border-radius: 0 6px 6px 0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+</style>
+
+<!-- 2026 年 9 月 折叠块 -->
+<details class="month-journal" open>
+  <summary class="month-title">📅 2026 年 09 月</summary>
+  
+  <!-- 该月日历挂载点 -->
+  <div class="calendar-box" id="cal-2026-09"></div>
+
+  <!-- 当月日记列表 -->
+  <div class="journal-entries">
+    <div id="entry-2026-09-24" class="journal-entry-card">
+      <h4>2026-09-24 (星期四)</h4>
+      <p>今天为 Hexo 博客成功增加了按月折叠和动态日历功能！</p>
+    </div>
+
+<pre><code>&lt;div id=&quot;entry-2026-09-03&quot; class=&quot;journal-entry-card&quot;&gt;
+  &lt;h4&gt;2026-09-03 (星期四)&lt;/h4&gt;
+  &lt;p&gt;初秋的天气渐渐凉爽起来，今天完成了一次徒步。&lt;/p&gt;
+&lt;/div&gt;
+</code></pre>
+  </div>
+</details>
+
+
+<script>
+// 日历动态渲染函数
+function buildCalendar(year, month, activeDays, targetId) {
+  const container = document.getElementById(targetId);
+  if (!container) return;
+
+  const firstDay = new Date(year, month - 1, 1).getDay(); // 当月第一天是周几
+  const totalDays = new Date(year, month, 0).getDate();  // 当月总天数
+  
+  let html = '<div class="cal-header">';
+  ['日', '一', '二', '三', '四', '五', '六'].forEach(d => html += `<span>${d}</span>`);
+  html += '</div><div class="cal-body">';
+
+  // 填充月初前的空格
+  for (let i = 0; i < firstDay; i++) {
+    html += '<span class="cal-day empty"></span>';
+  }
+
+  // 渲染 1号 到 当月最后一天
+  for (let day = 1; day <= totalDays; day++) {
+    const dayStr = day < 10 ? '0' + day : day;
+    const dateKey = `${year}-${String(month).padStart(2, '0')}-${dayStr}`;
+
+    if (activeDays.includes(dayStr)) {
+      // 如果当天有日记，生成带有锚点 #entry-YYYY-MM-DD 的跳转链接
+      html += `<a href="#entry-${dateKey}" class="cal-day has-entry" title="查看 ${day} 日日记">${day}</a>`;
+    } else {
+      html += `<span class="cal-day">${day}</span>`;
+    }
+  }
+
+  html += '</div>';
+  container.innerHTML = html;
+}
+
+// 页面加载完成后自动绘制日历
+document.addEventListener("DOMContentLoaded", function() {
+  // 配置 2026年9月 有日记的日期（填入日期数，如 ["03", "24"]）
+  buildCalendar(2026, 9, ["03", "24"], "cal-2026-09");
+});
+</script>
+</div>
+
+
+    </div>
+      
+      </div>
+
+    <!-- After footer scripts -->
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+
+
+
+   </body>
+</html>
+
